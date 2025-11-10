@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="6.162" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-11-10T12:17:06.600430900Z">
+<testcase classname="Search Functionality" name="Verify one-way flight search using Excel - #1.1" time="4.846">
+<system-out><![CDATA[
+Given I am on the flight search page........................................passed
+When I enter From location "C:\Users\chintal\Sprint\ixigo_flight\src\test\resources\ExcelData" 0.passed
+And I enter To location "C:\Users\chintal\Sprint\ixigo_flight\src\test\resources\ExcelData" 0.passed
+And I enter departure date "C:\Users\chintal\Sprint\ixigo_flight\src\test\resources\ExcelData" 0.passed
+And I select passengers "C:\Users\chintal\Sprint\ixigo_flight\src\test\resources\ExcelData" 0.passed
+And I select class from dropdown "C:\Users\chintal\Sprint\ixigo_flight\src\test\resources\ExcelData" 0.passed
+And I click on the search button............................................passed
+Then I should see the list of available flights.............................passed
+]]></system-out>
+</testcase>
+</testsuite>
