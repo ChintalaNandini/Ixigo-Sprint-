@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="45.521" tests="2" skipped="0" failures="1" errors="0" timestamp="2025-11-11T17:02:57.186235800Z">
+<testcase classname="Platform Locator" name="Verify that entering a valid train number displays the platform number." time="15.724">
+<system-out><![CDATA[
+Given The user is on the Platform Locator page of the Ixigo website.........passed
+When The user enters a "validTrainNumber" in the search input field.........passed
+And clicks Search...........................................................passed
+Then The platform number for the entered train should be displayed..........passed
+]]></system-out>
+</testcase>
+<testcase classname="Platform Locator" name="Book Now button should be visible and clickable for each available train" time="28.791">
+<failure/>
+<system-out><![CDATA[
+Given the user is on the Train Home page....................................passed
+When the user clicks on Search by Station...................................passed
+And the user enters a valid "stationName"...................................passed
+And the user clicks on Search...............................................passed
+Then the system should display a list of available trains...................passed
+And click on Book Now button................................................undefined
+Then user is navigated to Booking page......................................skipped
+]]></system-out>
+</testcase>
+</testsuite>
