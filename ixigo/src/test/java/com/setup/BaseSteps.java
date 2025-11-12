@@ -21,12 +21,12 @@ public class BaseSteps {
         String url = prop.getProperty("sourceUrl");
  
         if (browser.equalsIgnoreCase("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "C:\\Users\\siddach\\OneDrive - Capgemini\\Desktop\\Selenium Grid\\chromedriver.exe");
+            
             driver = new ChromeDriver();
         } else if (browser.equalsIgnoreCase("firefox")) {
             driver = new FirefoxDriver();
         } else if (browser.equalsIgnoreCase("edge")) {
-            System.setProperty("webdriver.edge.driver", "C:\\Users\\siddach\\OneDrive - Capgemini\\Desktop\\Selenium Grid\\msedgedriver.exe");
+            
             driver = new EdgeDriver();
         } else {
             System.out.println("Invalid browser specified in config.properties");

@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\siddach\AppData\Local\Temp\testng-eclipse-688744427\testng-customsuite.xml</span>
+                    <span>C:\Users\siddach\AppData\Local\Temp\testng-eclipse-13290047\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods, 1 failed,   1 passed</span>
+                    <span class="method-stats">3 methods, 1 failed,   2 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title failed">Failed methods</span>
@@ -115,6 +115,11 @@
                       <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
                     </span>
                     <div class="method-list-content passed suite-Default_suite">
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.runner.TestRunner" class="method navigator-link" hash-for-method="runScenario(&quot;Validate Top Hotels functionality&quot;, &quot;Hotels Page Functionality&quot;)">runScenario("Validate Top Hotels functionality", "Hotels Page Functionality")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-Default_suite" title="com.runner.TestRunner" class="method navigator-link" hash-for-method="runScenario(&quot;Validate Hotels page and search button&quot;, &quot;Hotels Page Functionality&quot;)">runScenario("Validate Hotels page and search button", "Hotels Page Functionality")</a> <!-- method navigator-link -->
@@ -144,17 +149,16 @@
                   </a> <!-- runScenario("Validate search functionality with Destination, Check-in, Check-out, Rooms & Guests", "Hotels Page ...) -->
                   <span class="method-name">runScenario</span>
                   <span class="parameters">("Validate search functionality with Destination, Check-in, Check-out, Rooms & Guests","Hotels Page Functionality")</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: //ul[contains(@class,&apos;suggestion-list&apos;)]/li[1] (tried for 15 second(s) with 500 milliseconds interval)
-Build info: version: &apos;4.34.0&apos;, revision: &apos;707dcb4246*&apos;
-System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;23.0.2&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.60, chrome: {chromedriverVersion: 141.0.7390.78 (2b53b0e231fc..., userDataDir: C:\Users\siddach\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52930}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52930/devtoo..., se:cdpVersion: 142.0.7444.60, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 6b4560e6ef978ead7bd7228f65a2e1ef
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at com.pages.UserPage.enterDestination(UserPage.java:51)
-	at com.stepDefinitionTestNG.Profile.i_enter_a_valid_destination(Profile.java:53)
-	at ✽.I enter a valid destination(file:///C:/Users/siddach/trainingss/ixigo/./src/test/resources/com/features/Hotelspage.feature:12)
+                  <div class="stack-trace">io.cucumber.testng.UndefinedStepException: The step &apos;I should see a list of available hotels matching the criterias&apos; is undefined.
+You can implement this step using the snippet(s) below:
+
+@Then(&quot;I should see a list of available hotels matching the criterias&quot;)
+public void i_should_see_a_list_of_available_hotels_matching_the_criterias() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+	at ✽.I should see a list of available hotels matching the criterias(file:///C:/Users/siddach/trainingss/ixigo/./src/test/resources/com/features/Hotelspage.feature:22)
 
 </div> <!-- stack-trace -->
                   <em>
@@ -171,6 +175,16 @@ Session ID: 6b4560e6ef978ead7bd7228f65a2e1ef
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
+                  <a name="runScenario(&quot;Validate Top Hotels functionality&quot;, &quot;Hotels Page Functionality&quot;)">
+                  </a> <!-- runScenario("Validate Top Hotels functionality", "Hotels Page Functionality") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("Validate Top Hotels functionality","Hotels Page Functionality")</span>
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
                   <a name="runScenario(&quot;Validate Hotels page and search button&quot;, &quot;Hotels Page Functionality&quot;)">
                   </a> <!-- runScenario("Validate Hotels page and search button", "Hotels Page Functionality") -->
                   <span class="method-name">runScenario</span>
@@ -184,7 +198,7 @@ Session ID: 6b4560e6ef978ead7bd7228f65a2e1ef
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\siddach\AppData\Local\Temp\testng-eclipse-688744427\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\siddach\AppData\Local\Temp\testng-eclipse-13290047\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -241,20 +255,24 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(2);
+data.addRows(3);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'runScenario')
 data.setCell(0, 2, 'com.runner.TestRunner')
-data.setCell(0, 3, 27073);
+data.setCell(0, 3, 23332);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'runScenario')
 data.setCell(1, 2, 'com.runner.TestRunner')
-data.setCell(1, 3, 8826);
+data.setCell(1, 3, 12951);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'runScenario')
+data.setCell(2, 2, 'com.runner.TestRunner')
+data.setCell(2, 3, 11514);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 35 seconds</span>
+              <span class="suite-total-time">Total running time: 47 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -282,22 +300,26 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">com.runner.TestRunner</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
-                <span class="method-name">setUpClass(org.testng.TestRunner@5974b7e8)</span>
+                <span class="method-name">setUpClass(org.testng.TestRunner@553da911)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">runScenario("Validate Hotels page and search button", "Hotels Page Functionality")</span>
-                <span class="method-start">876 ms</span>
+                <span class="method-start">1120 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">runScenario("Validate Top Hotels functionality", "Hotels Page Functionality")</span>
+                <span class="method-start">24458 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">runScenario("Validate search functionality with Destination, Check-in, Check-out, Rooms & Guests", "Hotels Page ...)</span>
-                <span class="method-start">9708 ms</span>
+                <span class="method-start">37414 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDownClass</span>
-                <span class="method-start">36785 ms</span>
+                <span class="method-start">48933 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

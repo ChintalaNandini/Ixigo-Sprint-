@@ -35,5 +35,9 @@ public class Hooks extends BaseSteps{
     public void afterScenario() {
         sleep(4000);
         driver.quit();
+        if (driver != null) {
+			driver.quit(); 
+		}
+		extReports.flush();
     }
 }
