@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
+<testng-results ignored="0" total="3" passed="2" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-11T22:14:45 IST" name="Default suite" finished-at="2025-11-11T22:15:23 IST" duration-ms="37157">
+  <suite started-at="2025-11-12T16:27:27 IST" name="Default suite" finished-at="2025-11-12T16:28:17 IST" duration-ms="49014">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@1649b0e6]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2025-11-11T22:14:45 IST" name="Default test" finished-at="2025-11-11T22:15:23 IST" duration-ms="37157">
+    <test started-at="2025-11-12T16:27:27 IST" name="Default test" finished-at="2025-11-12T16:28:17 IST" duration-ms="49014">
       <class name="com.runner.TestRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.runner.TestRunner@1649b0e6]" started-at="2025-11-11T22:14:45 IST" name="setUpClass" finished-at="2025-11-11T22:14:46 IST" duration-ms="864" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.runner.TestRunner@1649b0e6]" started-at="2025-11-12T16:27:28 IST" name="setUpClass" finished-at="2025-11-12T16:27:29 IST" duration-ms="1104" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@5974b7e8]]>
+                <![CDATA[org.testng.TestRunner@553da911]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@1649b0e6]" started-at="2025-11-11T22:14:46 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-11-11T22:14:55 IST" duration-ms="8826" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@1649b0e6]" started-at="2025-11-12T16:27:29 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-11-12T16:27:52 IST" duration-ms="23332" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -37,7 +37,23 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@1649b0e6]" started-at="2025-11-11T22:14:55 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-11-11T22:15:22 IST" duration-ms="27073" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@1649b0e6]" started-at="2025-11-12T16:27:52 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-11-12T16:28:05 IST" duration-ms="12951" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Validate Top Hotels functionality"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Hotels Page Functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@1649b0e6]" started-at="2025-11-12T16:28:05 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-11-12T16:28:16 IST" duration-ms="11514" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -50,34 +66,36 @@
               </value>
             </param>
           </params>
-          <exception class="org.openqa.selenium.TimeoutException">
+          <exception class="io.cucumber.testng.UndefinedStepException">
             <message>
-              <![CDATA[Expected condition failed: waiting for element to be clickable: By.xpath: //ul[contains(@class,'suggestion-list')]/li[1] (tried for 15 second(s) with 500 milliseconds interval)
-Build info: version: '4.34.0', revision: '707dcb4246*'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.60, chrome: {chromedriverVersion: 141.0.7390.78 (2b53b0e231fc..., userDataDir: C:\Users\siddach\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52930}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52930/devtoo..., se:cdpVersion: 142.0.7444.60, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 6b4560e6ef978ead7bd7228f65a2e1ef]]>
+              <![CDATA[The step 'I should see a list of available hotels matching the criterias' is undefined.
+You can implement this step using the snippet(s) below:
+
+@Then("I should see a list of available hotels matching the criterias")
+public void i_should_see_a_list_of_available_hotels_matching_the_criterias() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: //ul[contains(@class,'suggestion-list')]/li[1] (tried for 15 second(s) with 500 milliseconds interval)
-Build info: version: '4.34.0', revision: '707dcb4246*'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.60, chrome: {chromedriverVersion: 141.0.7390.78 (2b53b0e231fc..., userDataDir: C:\Users\siddach\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52930}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52930/devtoo..., se:cdpVersion: 142.0.7444.60, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 6b4560e6ef978ead7bd7228f65a2e1ef
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at com.pages.UserPage.enterDestination(UserPage.java:51)
-at com.stepDefinitionTestNG.Profile.i_enter_a_valid_destination(Profile.java:53)
-at ✽.I enter a valid destination(file:///C:/Users/siddach/trainingss/ixigo/./src/test/resources/com/features/Hotelspage.feature:12)
+              <![CDATA[io.cucumber.testng.UndefinedStepException: The step 'I should see a list of available hotels matching the criterias' is undefined.
+You can implement this step using the snippet(s) below:
+
+@Then("I should see a list of available hotels matching the criterias")
+public void i_should_see_a_list_of_available_hotels_matching_the_criterias() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+at ✽.I should see a list of available hotels matching the criterias(file:///C:/Users/siddach/trainingss/ixigo/./src/test/resources/com/features/Hotelspage.feature:22)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          </exception> <!-- io.cucumber.testng.UndefinedStepException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.runner.TestRunner@1649b0e6]" started-at="2025-11-11T22:15:22 IST" name="tearDownClass" finished-at="2025-11-11T22:15:23 IST" duration-ms="348" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.runner.TestRunner@1649b0e6]" started-at="2025-11-12T16:28:16 IST" name="tearDownClass" finished-at="2025-11-12T16:28:16 IST" duration-ms="46" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
