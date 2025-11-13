@@ -12,11 +12,11 @@ import com.parameters.PropertyReader;
  
 public class BaseSteps {
     public static WebDriver driver;
-    public static Properties prop; // ✅ Global properties variable
+    public static Properties prop; // 
  
     // Launch browser based on config
     public static void launchBrowser() {
-        prop = PropertyReader.readProperty(); // ✅ Initialize properties
+        prop = PropertyReader.readProperty(); // 
         String browser = prop.getProperty("browserName");
         String url = prop.getProperty("sourceUrl");
  
