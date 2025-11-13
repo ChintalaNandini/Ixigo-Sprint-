@@ -13,7 +13,9 @@ import org.openqa.selenium.support.PageFactory;
 public class PropertyReader {
 	public static Properties readProperty() {
 		Properties prop = null;
+		 //Properties prop = new Properties();
 		String fileName = ".\\src\\test\\resources\\PropertiesFile\\profile.properties";
+	       // String fileName = System.getProperty("user.dir") + "/src/test/resources/PropertiesFile/profile.properties";
 		try
 		{
 			FileInputStream fis  = new FileInputStream(fileName);
