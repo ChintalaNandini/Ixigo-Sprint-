@@ -23,7 +23,45 @@ public class OffersPage {
 }
 
 
-	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //	    // Locators
 //	    By offersLink = By.xpath("//a[contains(text(),'Offers')]");
 //	    By bannerOffer = By.xpath("//*[contains(text(),'50% OFF') or contains(text(),'Get Rs')]");

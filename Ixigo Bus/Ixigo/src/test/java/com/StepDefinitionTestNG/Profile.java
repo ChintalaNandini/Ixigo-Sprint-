@@ -1,12 +1,13 @@
 package com.StepDefinitionTestNG;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import com.pages.BusSearchPage;
 import com.pages.OffersPage;
+import com.parameters.PropertyReader;
 import com.setup.BaseSteps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,13 +16,16 @@ public class Profile extends BaseSteps {
 	
 	BusSearchPage busSearchPage;
 	OffersPage offerspage;
+	
+	
 	@Given("User launches Ixigo website")
 	public void user_launches_ixigo_website() {
+		
 	    // Write code here that turns the phrase above into concrete actions
 	    //throw new io.cucumber.java.PendingException();
 	}
 
-	@Then("Validate Ixigo home page is displayed")
+	@When("Validate Ixigo home page is displayed")
 	public void validate_ixigo_home_page_is_displayed() {
 	    // Write code here that turns the phrase above into concrete actions
 	    //throw new io.cucumber.java.PendingException();
@@ -46,7 +50,13 @@ public class Profile extends BaseSteps {
 	}
 	
 	//2nd scenario====================================================================================
-	@When("the user clicks on the Track Ticket option")
+	@Given("User launches  the Ixigo website")
+	public void user_launches_the_ixigo_website() {
+	    // Write code here that turns the phrase above into concrete actions
+	    //throw new io.cucumber.java.PendingException();
+	}
+	
+	@Then("the user clicks on the Track Ticket option")
 	public void the_user_clicks_on_the_track_ticket_option() {
 	    // Initialize OffersPage before using it
 	    offerspage = new OffersPage(driver);  // OR use PageFactory if you prefer
@@ -83,86 +93,273 @@ public class Profile extends BaseSteps {
 	    // Write code here that turns the phrase above into concrete actions
 	    //throw new io.cucumber.java.PendingException();
 		}
-	
-	
-	
-	//3rd scenario outline===========================================================================
-@Given("the user launches the webbrowser")
-public void the_user_launches_the_webbrowser() {
-    // Write code here that turns the phrase above into concrete actions
-    //throw new io.cucumber.java.PendingException();
-}
-
-@When("the user navigates to the Bus Offers page")
-public void the_user_navigates_to_the_bus_offers_page() {
-    // Write code here that turns the phrase above into concrete actions
-   // throw new io.cucumber.java.PendingException();
-}
-
-@When("then navigates to the Buses search page")
-public void then_navigates_to_the_buses_search_page() {
-
-boolean isDisplayed = driver.findElements(By.xpath("//div[contains(text(),'Search Results')]")).size() > 0;
-    assert isDisplayed : "Search results page not displayed!";
-}
 
 
-
-
-    // Write code here that turns the phrase above into concrete actions
-    //throw new io.cucumber.java.PendingException();
-
-@When("enters {string} as From Station and {string} as To Station")
-public void enters_as_from_station_and_as_to_station(String string, String string2) {
-    // Write code here that turns the phrase above into concrete actions
-    //throw new io.cucumber.java.PendingException();
+//3RD Scenario=============================================
+	 BusSearchPage bussearchpage=new BusSearchPage(driver);
 	
 
-}
-
-
-
-
-//@When("enters {string} as From Station and {string} as To Station")
-//public void enterStations(String fromStation, String toStation) {
-//    busSearchPage.enterFromStation(fromStation);
-//    busSearchPage.enterToStation(toStation);
-
-
-
-
-
-@When("keeps the travel date as default")
-public void keeps_the_travel_date_as_default() {
-    // Write code here that turns the phrase above into concrete actions
-   // throw new io.cucumber.java.PendingException();
-}
-
-@When("clicks on Search")
-public void clicks_on_search() {
-
-if (busSearchPage == null) {
+@Given("User launches the Ixigo Website")
+    public void user_launches_the_ixigo_website1() {
+        // Initialize page object after driver is launched
         busSearchPage = new BusSearchPage(driver);
     }
-    busSearchPage.clickSearch();
+
+	@When("user navigates to the offers page")
+public void user_navigates_to_the_offers_page() {
+    // Write code here that turns the phrase above into concrete actions
+    //throw new io.cucumber.java.PendingException();
 }
 
-    // Write code here that turns the phrase above into concrete actions
-   // throw new io.cucumber.java.PendingException();
-
-
-
-@Then("the search results page should be displayed successfully")
-public void the_search_results_page_should_be_displayed_successfully() {
-    // Write code here that turns the phrase above into concrete actions
-   // throw new io.cucumber.java.PendingException();
-
-boolean isDisplayed = driver.getCurrentUrl().contains("search");
-        assert isDisplayed : "Search results page not displayed!";
+    @When("user enters from station FromStation")
+    public void user_enters_from_station_from_station() {
+        busSearchPage.enterFromStation();
     }
 
 
+@And("user enters to station ToStation")
+    public void user_enters_to_station_to_station() {
+//	bussearchpage.clickFromStation(); 
+	busSearchPage.enterToStation();
+    }
+
+    @And("user clicks on search")
+    public void user_clicks_on_search() {
+        busSearchPage.clickSearchButton();
+    }
+
+//@When("user enters from station {string}")
+//public void user_enters_from_station() {
+//	busSearchPage = new BusSearchPage(Hooks.driver);
+//	String fromStation = PropertyReader.readProperty().getProperty("FromStation");
+//    busSearchPage.selectFromStation(fromStation);
+//}
+//
+//@And("user enters to station {string}")
+//public void user_enters_to_station() {
+//	 String toStation = PropertyReader.readProperty().getProperty("ToStation");
+//    busSearchPage.selectToStation(toStation);
+//}
+
+//@And("user clicks on search")
+//public void user_clicks_on_search() {
+//    busSearchPage.clickSearchButton();
+//}
+
+
+@Then("search results should be displayed")
+    public void search_results_should_be_displayed() {
+       // Assert.assertTrue(driver.getCurrentUrl().contains("search"), "Search results page not displayed!");
+   // System.out.println("Search results page loaded successfully.");
+    }
 }
+
+//	}
+//
+//   public void clickOnSearch() {
+//		busSearchPage.clickSearchButton();
+//	}
+//	
+//	@Then("search results should be displayed")
+//	public void search_results_should_be_displayed() {
+//	    // Write code here that turns the phrase above into concrete actions
+//	    //throw new io.cucumber.java.PendingException();
+//		
+//	}
+//	
+//	}
+//		
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//3rd scenario outline===========================================================================
+	
+//
+//@When("user selects the default date")
+//public void user_selects_the_default_date() {
+//    // Write code here that turns the phrase above into concrete actions
+//    //throw new io.cucumber.java.PendingException();
+//
+//	@Given("User launches the Ixigo website")
+//	public void user_launches_the_ixigo_website1() {
+//    // Write code here that turns the phrase above into concrete actions
+//    //throw new io.cucumber.java.PendingException();
+//	}
+//
+//	@When("User navigates to the Offers page")
+//	public void user_navigates_to_the_offers_page() {
+//	    // Write code here that turns the phrase above into concrete actions
+//	   // throw new io.cucumber.java.PendingException();
+//	}
+//
+//	@When("User fetches data from Excel BusData and row {int}")
+//	public void user_fetches_data_from_excel_bus_data_and_row(Integer int1) {
+//	    // Write code here that turns the phrase above into concrete actions
+//	   // throw new io.cucumber.java.PendingException();
+//	}
+//
+//	
+//	@When("User keeps the travel date as default")
+//	public void user_keeps_the_travel_date_as_default() {
+//	    // Write code here that turns the phrase above into concrete actions
+//	   // throw new io.cucumber.java.PendingException();
+//	}
+//	
+//	@When("User clicks on Search")
+//	public void user_clicks_on_search() {
+//	    // Write code here that turns the phrase above into concrete actions
+//	   // throw new io.cucumber.java.PendingException();
+//	}
+//	
+//	@Then("The search results page should be displayed successfully")
+//	public void the_search_results_page_should_be_displayed_successfully() {
+//	    // Write code here that turns the phrase above into concrete actions
+//	   // throw new io.cucumber.java.PendingException();
+//	}
+//	}
+//	
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//@Given("the user launches the webbrowser")
+//public void the_user_launches_the_webbrowser() {
+//    // Write code here that turns the phrase above into concrete actions
+//    //throw new io.cucumber.java.PendingException();
+//}
+//
+//@When("the user navigates to the Bus Offers page")
+//public void the_user_navigates_to_the_bus_offers_page() {
+//    // Write code here that turns the phrase above into concrete actions
+//   // throw new io.cucumber.java.PendingException();
+//}
+//
+//@When("then navigates to the Buses search page")
+//public void then_navigates_to_the_buses_search_page() {
+//
+//boolean isDisplayed = driver.findElements(By.xpath("//div[contains(text(),'Search Results')]")).size() > 0;
+//    assert isDisplayed : "Search results page not displayed!";
+//}
+//
+//
+//
+//
+//    // Write code here that turns the phrase above into concrete actions
+//    //throw new io.cucumber.java.PendingException();
+//
+//@When("enters {string} as From Station and {string} as To Station")
+//public void enters_as_from_station_and_as_to_station(String string, String string2) {
+//    // Write code here that turns the phrase above into concrete actions
+//    //throw new io.cucumber.java.PendingException();
+//	
+//
+//}
+//
+//
+//
+//
+////@When("enters {string} as From Station and {string} as To Station")
+////public void enterStations(String fromStation, String toStation) {
+//
+//
+//
+//
+//
+//
+//@When("keeps the travel date as default")
+//public void keeps_the_travel_date_as_default() {
+//    // Write code here that turns the phrase above into concrete actions
+//   // throw new io.cucumber.java.PendingException();
+//}
+//
+//@When("clicks on Search")
+//public void clicks_on_search() {
+//
+//if (busSearchPage == null) {
+//        busSearchPage = new BusSearchPage(driver);
+//    }
+//    busSearchPage.clickSearch();
+//}
+//
+//    // Write code here that turns the phrase above into concrete actions
+//   // throw new io.cucumber.java.PendingException();
+//
+//
+//
+//@Then("the search results page should be displayed successfully")
+//public void the_search_results_page_should_be_displayed_successfully() {
+//    // Write code here that turns the phrase above into concrete actions
+//   // throw new io.cucumber.java.PendingException();
+//
+//boolean isDisplayed = driver.getCurrentUrl().contains("search");
+//        assert isDisplayed : "Search results page not displayed!";
+//    }
+//
+//
+//}
 
 
 

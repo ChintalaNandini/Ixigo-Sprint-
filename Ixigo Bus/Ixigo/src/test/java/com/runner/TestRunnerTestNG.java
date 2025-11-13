@@ -7,8 +7,9 @@ import io.cucumber.testng.CucumberOptions;
 	@CucumberOptions (
 	features= ".\\src\\test\\resources\\com\\features\\Search.feature",
 	glue = "com.StepDefinitionTestNG",
-			plugin = {"pretty", "html:Reports/cucumber-reports.html"},
-			monochrome=true
+	tags="@3rd",
+			plugin = {"pretty", "html:Reports/cucumber-reports.html"}
+			
 	)
 
 public class TestRunnerTestNG extends AbstractTestNGCucumberTests
