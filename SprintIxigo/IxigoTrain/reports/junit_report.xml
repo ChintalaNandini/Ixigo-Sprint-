@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="27.649" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-11-13T11:19:17.633545500Z">
+<testcase classname="Train Functionality" name="Verify train search with valid source and destination - #1.1" time="26.792">
+<system-out><![CDATA[
+Given User is on Ixigo website and clicks on Trains tab.....................passed
+When User enters Source name from sheet 0 and row 0 and sourceCol 0.........passed
+And User enters Destination name from sheet 0 and row 0 and destinationCol 1.passed
+And User clicks on Search for train data....................................passed
+Then user is navigated to train data displayed page.........................passed
+]]></system-out>
+</testcase>
+</testsuite>
