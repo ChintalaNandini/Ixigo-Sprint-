@@ -3,8 +3,11 @@ package com.StepDefinitionTestNG;
 import org.testng.Assert;
 
 import com.pages.BusSearchPage;
+import com.parameters.ExcelReader;
+
+import com.pages.BusSearchPage;
 import com.pages.OffersPage;
-import com.parameters.PropertyReader;
+import com.parameters.ExcelReader;
 import com.setup.BaseSteps;
 
 import io.cucumber.java.en.And;
@@ -16,31 +19,29 @@ public class Profile extends BaseSteps {
 	
 	BusSearchPage busSearchPage;
 	OffersPage offerspage;
-	
+	ExcelReader reader = new ExcelReader();
+	String fromStation;
+	String toStation;
+	String busType;
 	
 	@Given("User launches Ixigo website")
 	public void user_launches_ixigo_website() {
-		
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
+	
 	}
 
 	@When("Validate Ixigo home page is displayed")
 	public void validate_ixigo_home_page_is_displayed() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
+	    
 	}
 
 	@Then("User navigates to Offers page")
 	public void user_navigates_to_offers_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
+	    
 	}
 
 	@Then("Validate Offers page is opened successfully")
 	public void validate_offers_page_is_opened_successfully() {
-	    // Write code here that turns the phrase above into concrete actions
-	   // throw new io.cucumber.java.PendingException();
+	    
 	}
 	@Then("Print and validate title of the webpage")
 	public void print_and_validate_title_of_the_webpage() {
@@ -52,8 +53,7 @@ public class Profile extends BaseSteps {
 	//2nd scenario====================================================================================
 	@Given("User launches  the Ixigo website")
 	public void user_launches_the_ixigo_website() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
+	    
 	}
 	
 	@Then("the user clicks on the Track Ticket option")
@@ -66,93 +66,203 @@ public class Profile extends BaseSteps {
 
 	@Then("the Track Ticket page should be displayed")
 	public void the_track_ticket_page_should_be_displayed() {
-	    // Write code here that turns the phrase above into concrete actions
-	   // throw new io.cucumber.java.PendingException();
+	   
 	}
 
 	@Then("the page title should be Enter Ticket Details")
 	public void the_page_title_should_be_enter_ticket_details() {
-	    // Write code here that turns the phrase above into concrete actions
-	   // throw new io.cucumber.java.PendingException();
+	   
 	}
 
 	@Then("the user should see input fields for Booking ID and Mobile Number")
 	public void the_user_should_see_input_fields_for_booking_id_and_mobile_number() {
-	    // Write code here that turns the phrase above into concrete actions
-	   // throw new io.cucumber.java.PendingException();
+	    
 	}
 
 	@Then("a Track Details button should be visible")
 	public void a_track_details_button_should_be_visible() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
+	    
 	}
 
 	@Then("the Frequently Asked Questions section should be displayed")
 	public void the_frequently_asked_questions_section_should_be_displayed() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-		}
+	}
 
 
 //3RD Scenario=============================================
-	 BusSearchPage bussearchpage=new BusSearchPage(driver);
+		 BusSearchPage bussearchpage=new BusSearchPage(driver);
+		
+	
+	@Given("User launches the Ixigo Website")
+	    public void user_launches_the_ixigo_website1() {
+	        // Initialize page object after driver is launched
+	        busSearchPage = new BusSearchPage(driver);
+	    }
+	
+		@When("user navigates to the offers page")
+	public void user_navigates_to_the_offers_page() {
+	    
+	}
+	
+	    @When("user enters from station FromStation")
+	    public void user_enters_from_station_from_station() {
+	        busSearchPage.enterFromStation();
+	    }
+	
+	
+	@And("user enters to station ToStation")
+	    public void user_enters_to_station_to_station() {
+	//	bussearchpage.clickFromStation(); 
+		busSearchPage.enterToStation();
+	    }
+	
+	    @And("user clicks on search")
+	    public void user_clicks_on_search() {
+	        busSearchPage.clickSearchButton();
+	    }
+	
+	
+	
+	@Then("search results should be displayed")
+	    public void search_results_should_be_displayed() {
+	       // Assert.assertTrue(driver.getCurrentUrl().contains("search"), "Search results page not displayed!");
+	    System.out.println("Search results page loaded successfully.");
+	    }
 	
 
-@Given("User launches the Ixigo Website")
-    public void user_launches_the_ixigo_website1() {
-        // Initialize page object after driver is launched
-        busSearchPage = new BusSearchPage(driver);
-    }
-
-	@When("user navigates to the offers page")
-public void user_navigates_to_the_offers_page() {
-    // Write code here that turns the phrase above into concrete actions
-    //throw new io.cucumber.java.PendingException();
-}
-
-    @When("user enters from station FromStation")
-    public void user_enters_from_station_from_station() {
-        busSearchPage.enterFromStation();
-    }
+	//4th scenario=============================================================
 
 
-@And("user enters to station ToStation")
-    public void user_enters_to_station_to_station() {
-//	bussearchpage.clickFromStation(); 
-	busSearchPage.enterToStation();
-    }
+	@Given("User is on Ixigo website and navigates to Offers page")
+	public void user_is_on_ixigo_website_and_navigates_to_offers_page() {
+	    busSearchPage = new BusSearchPage(driver);
+	}
+	
+	@When("User enters From station name from sheet {int} and row {int} and fromCol {int}")
+	public void user_enters_from_station_name_from_sheet_and_row_and_from_col(Integer sheet, Integer row, Integer fromCol) {
+	    String fromStation = reader.getCellData(sheet, row, fromCol);
+	    System.out.println(" From Station from Excel: " + fromStation);
+	    if (fromStation.isEmpty()) {
+	        throw new RuntimeException("From Station value is empty. Check Excel data!");
+	    }
+	    busSearchPage.enterFromStation(fromStation);
+	}
+	
+	@When("User enters To station name from sheet {int} and row {int} and toCol {int}")
+	public void user_enters_to_station_name_from_sheet_and_row_and_to_col(Integer sheet, Integer row, Integer toCol) {
+	    String toStation = reader.getCellData(sheet, row, toCol);
+	    System.out.println(" To Station from Excel: " + toStation);
+	    if (toStation.isEmpty()) {
+	        throw new RuntimeException("To Station value is empty. Check Excel data!");
+	    }
+	    busSearchPage.enterToStation(toStation);
+	}
+	
+	@When("User clicks on search for buses data")
+	public void user_clicks_on_search_for_buses_data() {
+	    busSearchPage.clickSearchButton();
+	}
+	@Then("User verifies bus details page is displayed")
+	public void user_verifies_bus_details_page_is_displayed() {
+	    
+	}
 
-    @And("user clicks on search")
-    public void user_clicks_on_search() {
-        busSearchPage.clickSearchButton();
-    }
+
+	//@5th Scenario ===================================================
+	
+	@Given("User is on Ixigo homepage and User navigates to Offers page")
+	public void user_is_on_ixigo_homepage_and_user_navigates_to_offers_page() {
+	    
+	    busSearchPage = new BusSearchPage(driver);
+	    System.out.println("Navigated to Ixigo homepage and Offers page");
+	}
+
+	@When("User enters FromStation in From field")
+	public void user_enters_from_station_in_from_field() {
+	    fromStation = reader.getCellData(1, 0, 0); // Sheet2, Row1, Col0
+	    System.out.println(" From Station: " + fromStation);
+	    busSearchPage.enterFromStation(fromStation);
+	}
+
+	@When("User enters ToStation in To field")
+	public void user_enters_to_station_in_to_field() {
+	    toStation = reader.getCellData(1, 0, 1); // Sheet2, Row1, Col1
+	    System.out.println(" To Station: " + toStation);
+	    busSearchPage.enterToStation(toStation);
+	}
+
+	@When("User clicks on Search button then Bus listing page should display available buses")
+	public void user_clicks_on_search_button_then_bus_listing_page_should_display_available_buses() {
+	    busSearchPage.clickSearchButton1();
+	    System.out.println("Bus listing page displayed");
+	}
+
+	@Then("User selects BusType filter and bus list gets updated")
+	public void user_selects_bus_type_filter_and_bus_list_gets_updated() {
+	    busType = reader.getCellData(1, 0, 2); // Sheet2, Row1, Col2
+	    System.out.println(" Bus Type: " + busType);
+	    busSearchPage.selectBusTypeFilter(busType);
+	    Assert.assertTrue(busSearchPage.isBusListUpdated(busType), "Bus list did not update correctly!");
+	}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //@When("user enters from station {string}")
 //public void user_enters_from_station() {
 //	busSearchPage = new BusSearchPage(Hooks.driver);
 //	String fromStation = PropertyReader.readProperty().getProperty("FromStation");
-//    busSearchPage.selectFromStation(fromStation);
+//  busSearchPage.selectFromStation(fromStation);
 //}
 //
 //@And("user enters to station {string}")
 //public void user_enters_to_station() {
 //	 String toStation = PropertyReader.readProperty().getProperty("ToStation");
-//    busSearchPage.selectToStation(toStation);
+//  busSearchPage.selectToStation(toStation);
 //}
 
 //@And("user clicks on search")
 //public void user_clicks_on_search() {
-//    busSearchPage.clickSearchButton();
+//  busSearchPage.clickSearchButton();
 //}
 
 
-@Then("search results should be displayed")
-    public void search_results_should_be_displayed() {
-       // Assert.assertTrue(driver.getCurrentUrl().contains("search"), "Search results page not displayed!");
-   // System.out.println("Search results page loaded successfully.");
-    }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //	}
 //
