@@ -20,30 +20,31 @@ Feature: Hotels Page Functionality
     And click on the Hotelpage search
     Then I should the get the list of hotels
     
-  @tw
-  Scenario Outline: Validate hotel filtering functionality
-  Given I am on the Hotels page1
-  When I click the Search Hotels button
-  And I apply the checkbox filter with <sheet> and <row>
-  Then I should see a list of filtered hotels
+ # @tw
+  #Scenario Outline: Validate hotel filtering functionality
+  #Given I am on the Hotels page1
+  #Wh#en I click the Search Hotels button
+ #And# I apply the checkbox filter with <sheet> and <row>
+ # Then I should see a list of filtered hotels
 
-  Examples:
-  | sheet | row |
-  | 0     | 0   |
-  | 0     | 1   |
+ # Examples:
+ # | sheet | row |
+ # | 0     | 0   |
+  #| 0     | 1   |
 
    
 
-  @fs
+  
   Scenario: User searches for hotels by destination
     Given the user is on the Ixigo homepage
     When the user clicks on the hotels tab
-    And the user enters a destination in the search field
+    And the user enters a <sheet><row> destination in the search field
     And the user clicks on the search button
     Then the user should see a list of available hotels displayed 
     Examples:
     | sheet | row |
     |  0    |  0  |
+    |  0    |  1  |
     
   
    

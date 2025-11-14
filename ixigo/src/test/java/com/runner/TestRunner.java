@@ -8,7 +8,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
     features = ".\\src\\test\\resources\\com\\features\\Hotelspage.feature", // folder containing both feature files
     glue = "com.stepDefinitionTestNG",                 // package for step definitions
-    plugin = {"pretty", "html:target/cucumber-report.html"},tags="@fs"
+    plugin = {"pretty", "html:target/cucumber-report.html"}
     )
 public class TestRunner extends AbstractTestNGCucumberTests{
 	

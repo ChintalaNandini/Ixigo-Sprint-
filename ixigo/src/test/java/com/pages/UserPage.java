@@ -13,18 +13,22 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.IDynamicGraph.Status;
 
 import com.google.common.collect.Table.Cell;
 import com.parameters.ExcelReader;
 import com.setup.BaseSteps;
+import com.setup.Reports;
 
 import net.masterthought.cucumber.json.Row;
 
@@ -39,6 +43,7 @@ public class UserPage extends BaseSteps {
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		PageFactory.initElements(driver, this);
 	}
+	
 
 
 	//first scenario
@@ -130,159 +135,90 @@ public class UserPage extends BaseSteps {
 
 	//fourth
 	//======================================================
+	private static By secondcheck = By.xpath("//input[@type='checkbox' and @value='MP_CF' and @name='sort']");
 
-	
+	public static boolean clickcheckbox2() {
+	    try {
+	        WebElement second = wait.until(ExpectedConditions.elementToBeClickable(secondcheck));
+	        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", second);
+	        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", second);
 
-	public static void enterInput() throws Exception
-	{
-		ExcelReader reader = new ExcelReader(System.getProperty("user.dir") + "/src/test/resources/ExcelData/Search_input.xlsx");
-	    List<String> destinations = reader.getColumnData(0, 0); // Sheet 0, Column 0
+	        WebDriverWait dynamicWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+	        boolean stateChanged = dynamicWait.until(driver -> {
+	            String ariaChecked = second.getAttribute("aria-checked");
+	            String classAttr = second.getAttribute("class");
+	            return second.isSelected() || "true".equalsIgnoreCase(ariaChecked) || (classAttr != null && classAttr.contains("checked"));
+	        });
 
-	    WebDriver driver = BaseSteps.driver;
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
-	    for (String destination : destinations) {
-	        WebElement destinationInput = wait.until(ExpectedConditions.visibilityOfElementLocated(
-	            By.cssSelector("div.flex-1 > input[data-testid='location-input-web']")));
-	        destinationInput.clear();
-	        destinationInput.sendKeys(destination);
-
-	        // Wait for suggestions to appear
-	        try {
-	            wait.until(ExpectedConditions.presenceOfElementLocated(
-	                By.xpath("//ul[contains(@class,'suggestion-list')]")));
-
-	            WebElement firstSuggestion = wait.until(ExpectedConditions.elementToBeClickable(
-	                By.xpath("//ul[contains(@class,'suggestion-list')]//li[1]")));
-
-	            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", firstSuggestion);
-	        } catch (TimeoutException e) {
-	            // Fallback: use keyboard navigation if suggestions don't appear
-	            destinationInput.sendKeys(Keys.ARROW_DOWN);
-	            destinationInput.sendKeys(Keys.ENTER);
-	        }
+	        return stateChanged;
+	    } catch (TimeoutException te) {
+	        return false;
 	    }
 	}
-	public static void enterinputSearch()
-	{
-		WebDriver driver = BaseSteps.driver;
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-	    WebElement searchButton = wait.until(ExpectedConditions.elementToBeClickable(
-	        By.cssSelector("button[data-testid='search-hotels']")));
-	    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchButton);
-
-
-	}
-
-
-
-
-
-
-	//===============================================================
 	
-	public static void searcchhotelss() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//==================================================
+	//=================fifth===========================
+	
+	public boolean clickAndEnterHotelDestination(String destination) {
+	    boolean actResult = true;
+	    try {
+	        By hotelInputLocator = By.xpath("//input[@placeholder='Enter city, area or property name']");
+	        WebElement hotelInput = wait.until(ExpectedConditions.elementToBeClickable(hotelInputLocator));
+	        hotelInput.click();
+	        System.out.println("clicked");
+	        Thread.sleep(2000); // Optional: allow UI to stabilize
+	        hotelInput.clear();
+	        hotelInput.sendKeys(destination);
+	        Thread.sleep(3000); // Allow suggestions to load
 
-		// Wait for modal to disappear
-		By modalLocator = By.xpath("//div[@data-testid='bpg-home-modal']");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(modalLocator));
-
-		// Now click the Search Hotels button
-		WebElement searchHotelsBtn = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//button[@data-testid='search-hotels']//div[@class='flex items-center gap-5 font-medium']")));
-		searchHotelsBtn.click();
-
-
+	        //Reports.generateReport(driver, test, Status.PASS, "Entered hotel destination: " + destination);
+	    } catch (Exception e) {
+	        actResult = false;
+	        //Reports.generateReport(driver, test, Status.FAIL, "Failed to enter hotel destination: " + e.getMessage());
+	    }
+	    return actResult;
 	}
 
-	public static boolean clickcheckbox1()
-		{
-			boolean actResult = true;
-			try
-			{
-				WebElement firstcheck = wait.until(ExpectedConditions.elementToBeClickable(
-			            By.xpath("//button[@data-testid='search-hotels']//div[@class='flex items-center gap-5 font-medium']")));
+	public boolean selectFirstHotelSuggestion() {
+	    boolean actResult = true;
+	    try {
+	      	
+	        //By suggestionLocator = By.xpath("//div[@data-testid='Chennai']");
+	        By suggestionLocator = By.xpath("//div[@data-testid='Bengaluru']//div[contains(@class,'item-center')]");
+	        WebElement firstSuggestion = wait.until(ExpectedConditions.elementToBeClickable(suggestionLocator));
+	        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", firstSuggestion);
+	        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", firstSuggestion);
+	        firstSuggestion.click();
+	        //driver.findElement(click);
+	        //Reports.generateReport(driver, test, Status.PASS, "Selected first hotel suggestion from dropdown.");
+	    } catch (Exception e) {
+	        actResult = false;
+	        //Reports.generateReport(driver, test, Status.FAIL, "Failed to select hotel suggestion: " + e.getMessage());
+	    }
+	    return actResult;
+	}
+	
+	public static void searchdestination()
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-			}
-			catch (TimeoutException te)
-			{
-				actResult = false;
-				//Reports.generateReport(driver, test, Status.FAIL, "Check box is not found");
-			}
-			return actResult;
+		// Wait for the first hotel card link to be clickable
+		WebElement viewButton2 = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//button[@data-testid='search-hotels']")
+				));
 
+		// Click the hotel card link (this opens a new tab)
+		viewButton2.click();
+	}
 
-		}
+	
 }
+	
 
-
-
-//	private static By name=By.xpath("//div[@role='listitem']//input[@type='checkbox' and @value='MP_FC']");
-//	public boolean clickcheckbox1() {
-//		try {
-//			//By name=By.xpath("//button[@data-testid='search-hotels']//div[@class='flex items-center gap-5 font-medium']");
-//			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-//			WebElement checkbox1 = wait.until(ExpectedConditions.elementToBeClickable(name));
-////			checkbox1.click();
-//
-//			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", checkbox1);
-//			((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox1);
-//			checkbox1.click();
-//
-//			//            // Use your locator variable
-//			//            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", checkbox1);
-//			//            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox1);
-//			//            
-//			            return true;
-//		} catch (Exception e) {
-//			System.out.println("Failed to click checkbox1: " + e.getMessage());
-//
-//		}
-//		return false;
-//	}
-//
-//	private static By modalLocator = By.xpath("//input[@type='radio' and @value='UR_7.0']");
-//	public static boolean clickcheckbox2() {
-//		try {
-//			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-//
-//			// Step 1: Wait for modal to disappear
-//
-//			wait.until(ExpectedConditions.invisibilityOfElementLocated(modalLocator));
-//			driver.findElement(modalLocator).click();
-//			//            // Step 2: Define locator
-//			//            By locator = By.xpath("//input[@type='radio' and @value='UR_7.0']");
-//			//
-//			//            // Step 3: Wait for presence
-//			//            WebElement radio = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-//			//
-//			//            // Step 4: Scroll into view
-//			//            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", radio);
-//			//
-//			//            // Step 5: Wait for clickability
-//			//            wait.until(ExpectedConditions.elementToBeClickable(radio));
-//			//
-//			//            // Step 6: Click if not selected
-//			//            if (!radio.isSelected()) {
-//			//                radio.click();
-//			//            }
-//			//
-//			//            return true;
-//			//
-//		} catch (Exception e) {
-//			System.err.println("Failed to click checkbox2: " + e.getMessage());
-//
-//		}
-//		return false;
-//	}
-//}
-//}
-//   
-
-
-
+//===============================================
+	
+	
 
 
 

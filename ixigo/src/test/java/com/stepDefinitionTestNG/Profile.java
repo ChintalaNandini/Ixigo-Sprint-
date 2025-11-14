@@ -75,6 +75,7 @@ public class Profile extends BaseSteps {
 	//=========================================================================
 
 
+
 	@When("I click on the hotel")
 	public void i_click_on_the_hotel() {
 		userPage.clickView();
@@ -92,9 +93,6 @@ public class Profile extends BaseSteps {
 
 
 	//========================================================
-
-
-
 
 	@Given("I am on the Hotels Page")
 	public void i_am_on_the_hotels_page() {
@@ -143,7 +141,7 @@ public class Profile extends BaseSteps {
 		userPage.searcchhotelss();
 	}
 	
-	/*
+	
 	
 	//@When("I apply the checkbox filter with <sheet> and <row>")
 	@When("I apply the checkbox filter with {int} and {int}")
@@ -155,7 +153,7 @@ public class Profile extends BaseSteps {
 
 	    ExcelReader excelReader = new ExcelReader(path);
 
-	    List<String> filters = excelReader.getColumnData(sheet, row);
+	    List<String> filters = excelReader.getRowData(row, sheet);
 	    Assert.assertNotNull(filters,"Locality not found at sheet"+ sheet+", row "+row);
 	    
 	    boolean status = false;
@@ -174,51 +172,18 @@ public class Profile extends BaseSteps {
 		Assert.assertTrue(status);
 	
 }
-		
-/*
-	
-	@When("I apply the checkbox filter with {int} and {int}")
-	public void i_apply_the_checkbox_filter_with_and(Integer sheet, Integer row) throws Exception {
-	    // Load properties if not already loaded
-	    Assert.assertNotNull(prop, "Properties object is not initialized.");
-	    String path = prop.getProperty("excelpath");
-	    Assert.assertNotNull(path, "Excel path is not defined in properties file.");
-	    File file = new File(path);
-	    Assert.assertTrue(file.exists(), "Excel file not found at: " + path);
-
-	    // Read Excel data
-	    ExcelReader excelReader = new ExcelReader(path);
-	    List<String> filters = excelReader.getColumnData(sheet, row);
-	    Assert.assertNotNull(filters, "Locality not found at sheet " + sheet + ", row " + row);
-	    System.out.println("Filters from Excel: " + filters);
-
-	    boolean status = false;
-
-	    // Apply checkbox based on row
-	    if (row == 0) {
-	        status = userPage.clickcheckbox1();
-	    } else if (row == 1) {
-	        status = userPage.clickcheckbox2();
-	    } else {
-	        throw new IllegalArgumentException("Unsupported row index: " + row);
-	    }
-
-	    System.out.println("Checkbox click status for row " + row + ": " + status);
-	    Assert.assertTrue(status, "Checkbox click  for row " + row);
-	}
 	
 	
-
 	@Then("I should see a list of filtered hotels")
 	public void i_should_see_a_list_of_filtered_hotels() {
 //	    List<WebElement> filteredHotels = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 //	        By.cssSelector(".hotel-card"))); // Replace with actual class used for hotel listings
 //	    Assert.assertTrue(filteredHotels.size() > 0, "Filtered hotel list should be visible");
 	}
-
+*/
 
 	//==================================================================
-	*/
+	
 	
 	
 	@Given("the user is on the Ixigo homepage")
@@ -228,19 +193,23 @@ public class Profile extends BaseSteps {
 
 	@When("the user clicks on the hotels tab")
 	public void the_user_clicks_on_the_hotels_tab() {
-	    userPage.clickSearch();
+	    //userPage.clickSearch();
 	}
 
-	@When("the user enters a destination in the search field")
-	public void the_user_enters_a_destination_in_the_search_field() throws Exception {
-	    userPage.enterInput();
-	}
-
+	@When("the user enters a {int}{int} destination in the search field")
+	public void the_user_enters_a_destination_in_the_search_field(Integer sheet,Integer row) throws Exception {
+		destination = ExcelReader.readData(sheet, row);
+		//tring destination = currentRowData;
+		System.out.println(destination);
+		userPage.clickAndEnterHotelDestination(destination);
+		userPage.selectFirstHotelSuggestion();
+	    
+    	}
 
 
 	@When("the user clicks on the search button")
 	public void the_user_clicks_on_the_search_button() {
-	    userPage.enterinputSearch();
+	    userPage.searchdestination();
 	}
 
 	@Then("the user should see a list of available hotels displayed")
