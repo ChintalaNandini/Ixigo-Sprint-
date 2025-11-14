@@ -1,45 +1,40 @@
 package com.parameters;
+
 import java.io.FileInputStream;
 import java.io.IOException;
-
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
- 
+
 public class ExcelReader {
- 
-	public Object[][] getExcelData(String sheetName) throws IOException {
-	    String excelPath = System.getProperty("user.dir") + "\\src\\test\\resources\\BusData.xlsx";
-	    FileInputStream fis = new FileInputStream(excelPath);
-	    XSSFWorkbook workbook = new XSSFWorkbook(fis);
-	    XSSFSheet sheet = workbook.getSheet(sheetName);
+    private Workbook workbook;
 
-	    int totalRows = sheet.getPhysicalNumberOfRows();
-	    int totalCols = sheet.getRow(0).getPhysicalNumberOfCells();
+    public ExcelReader() {
+        try {
+            // Use dynamic path for flexibility
+            String filePath = System.getProperty("user.dir") + "\\src\\test\\resources\\ExcelData\\BusSearchData1.xlsx";
+            FileInputStream fis = new FileInputStream(filePath);
+            workbook = new XSSFWorkbook(fis);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to load Excel file: " + e.getMessage());
+        }
+    }
 
-	    Object[][] data = new Object[totalRows - 1][totalCols];
-
-	    for (int i = 1; i < totalRows; i++) {
-	        XSSFRow row = sheet.getRow(i);
-	        for (int j = 0; j < totalCols; j++) {
-	            XSSFCell cell = row.getCell(j);
-	            if (cell == null) {
-	                data[i - 1][j] = "";
-	            } else {
-	                cell.setCellType(CellType.STRING);
-	                data[i - 1][j] = cell.getStringCellValue();
-	            }
-	        }
-	    }
-
-	    workbook.close();
-	    fis.close();
-	    return data;
-	}
-
+    public String getCellData(int sheetIndex, int rowIndex, int colIndex) {
+        try {
+            Sheet sheet = workbook.getSheetAt(sheetIndex);
+            Row row = sheet.getRow(rowIndex);
+            if (row == null) return "";
+            Cell cell = row.getCell(colIndex);
+            return cell != null ? cell.toString().trim() : "";
+        } catch (Exception e) {
+            System.err.println("Error reading Excel data: " + e.getMessage());
+            return "";
+        }
+    }
 }
+
+
 
 
 
@@ -50,7 +45,34 @@ public class ExcelReader {
 
 
 
-
+//public Object[][] getExcelData(String sheetName) throws IOException {
+//String excelPath = System.getProperty("user.dir") + "\\src\\test\\resources\\BusData.xlsx";
+//FileInputStream fis = new FileInputStream(excelPath);
+//XSSFWorkbook workbook = new XSSFWorkbook(fis);
+//XSSFSheet sheet = workbook.getSheet(sheetName);
+//
+//int totalRows = sheet.getPhysicalNumberOfRows();
+//int totalCols = sheet.getRow(0).getPhysicalNumberOfCells();
+//
+//Object[][] data = new Object[totalRows - 1][totalCols];
+//
+//for (int i = 1; i < totalRows; i++) {
+//    XSSFRow row = sheet.getRow(i);
+//    for (int j = 0; j < totalCols; j++) {
+//        XSSFCell cell = row.getCell(j);
+//        if (cell == null) {
+//            data[i - 1][j] = "";
+//        } else {
+//            cell.setCellType(CellType.STRING);
+//            data[i - 1][j] = cell.getStringCellValue();
+//        }
+//    }
+//}
+//
+//workbook.close();
+//fis.close();
+//return data;
+//}
 
 
 

@@ -28,3 +28,33 @@ Scenario: Search buses from offers page
   Then search results should be displayed    
 
 
+@4th 
+
+Scenario Outline: Verify bus search with valid source and destination using excel data
+ 
+    Given User is on Ixigo website and navigates to Offers page
+    When  User enters From station name from sheet <sheet> and row <row> and fromCol <fromCol>
+    And User enters To station name from sheet <sheet> and row <row> and toCol <toCol>
+    And User clicks on search for buses data
+    Then User verifies bus details page is displayed 
+ Examples:
+| sheet | row | fromCol | toCol |
+| 0     | 1   | 0       | 1     |
+| 0     | 2   | 0       | 1     |
+
+
+@5th
+
+
+Scenario Outline: User searches for buses and applies bus type filter
+  Given User is on Ixigo homepage and User navigates to Offers page
+  When User enters FromStation in From field 
+  And User enters ToStation in To field
+  And User clicks on Search button then Bus listing page should display available buses
+  Then User selects BusType filter and bus list gets updated
+
+Examples:
+  | sheet | row | fromCol | toCol |busTypeCol|
+  | 1     | 0   | 0       | 1     |		2    |
+  | 1     | 1   | 0       | 1     |		2	 |
+

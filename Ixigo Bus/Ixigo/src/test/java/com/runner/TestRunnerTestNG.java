@@ -7,7 +7,8 @@ import io.cucumber.testng.CucumberOptions;
 	@CucumberOptions (
 	features= ".\\src\\test\\resources\\com\\features\\Search.feature",
 	glue = "com.StepDefinitionTestNG",
-	tags="@3rd",
+	//tags="@4th",
+	tags="@5th",
 			plugin = {"pretty", "html:Reports/cucumber-reports.html"}
 			
 	)
