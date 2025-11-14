@@ -1,32 +1,17 @@
 Feature: Ixigo Navigation Flow
- @1stScenario
+@1stScenario
   Scenario: Navigate and click through Ixigo pages
     Given the user is on Ixigo home page
     When the user clicks on trains
     Then user clicks on order food on train
     Then it should display on order food page
      
- @2ndScenario  
+@2ndScenario  
 Scenario: Navigate and click through Ixigo pages
   Given the user is on Ixigo home page
   When the user clicks on trains
   Then user clicks on Train platform Locator
   Then verify the Train platform Page
-  
-  #4thScenario
-  #Scenario: Navigate and click through Ixigo pages
-   # Given the user is on Ixigo home page
-    #When the user clicks on trains
-  #  And user clicks on Check Seat Availability
-   # And user enters data of From <sheetNo> <rowNum> <colNum> 
-    #And user enters data of To <sheetNo> <rowNum> <colNum> 
-    #And user clicks on Check Availability
-   # Then verify Trains Availability Page
-    
-#Examples:
- #| sheetNo | rowNum | colNum |
-# | 0 | 1 | 0 |
- #| 0 | 2 | 1 |
  
 @3rdScenario
 Scenario: Navigate and click through Ixigo pages
@@ -37,13 +22,37 @@ Scenario: Navigate and click through Ixigo pages
     And user click on input field 
     And user click on Enter you digit PNR number <sheetNo> <rowNum>
     And click on search
-    And verify popup
-    Then click on okay
+    Then verify Available Stations
 Examples:
 | sheetNo | rowNum |
-| 1 | 0 |
-#| 1 | 1 |
-#| 1 | 2 |
+| 0 | 0 |
+| 0 | 1 |
+| 0 | 2 |
+
+@4thScenario
+  Scenario: Navigate and click through Ixigo pages
+  Given the user is on Ixigo home page
+  When the user clicks on trains
+  And user clicks on Check Seat Availability
+  When User enters Source name from sheet <sheet> and row <row> and sourceCol <sourceCol>
+  And User enters Destination name from sheet <sheet> and row <row> and destinationCol <destinationCol> 
+  And user clicks on Check Availability
+  Then verify Trains Availability Page
+    
+Examples:
+| sheet | row | sourceCol | destinationCol |
+|   0   |  0  |     0     |      1         |
+
+
+@5thScenario  
+Scenario: Navigate and click through Ixigo pages
+  Given the user is on Ixigo home page
+  When the user clicks on offers
+  And user clicks on TrainOffers
+  Then verify offers availability 
+
+
+
 
 
  

@@ -32,12 +32,12 @@ public class Hooks {
         BaseSteps.driver.get(sourceUrl);
     }
 
-//    @After
-//    public void tearDown() {
-//        if (BaseSteps.driver != null) {
-//            BaseSteps.driver.quit();
-//        }
-//    }
+    @After
+    public void tearDown() {
+        if (BaseSteps.driver != null) {
+            BaseSteps.driver.quit();
+        }
+    }
 }
 
 
