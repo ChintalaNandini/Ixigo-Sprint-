@@ -5,6 +5,7 @@ import com.parameters.ExcelReader;
 import com.parameters.PropertyReader;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import org.testng.Assert;
 
@@ -17,6 +18,7 @@ import io.cucumber.java.en.When;
 public class TrainsPage extends BaseSteps 
 {
 
+	Properties prop = PropertyReader.readProperty();
 	HomePage homePage;
 	//    FoodOrderPage foodOrderPage = new FoodOrderPage(driver);
 
@@ -49,15 +51,16 @@ public class TrainsPage extends BaseSteps
 	}
 
 	@Then("verify the Train platform Page")
-	public void verify_the_train_platform_page() {
+	public void verify_the_train_platform_page(){
 		homePage.clickTrainPlatform();
+		//Thread.sleep(2000);
 	}
 
-	//4th Scenario Starts from here
+	//3rd Scenario Starts from here
 
 
 	@Then("user click on input field")
-	public void user_click_on_input_field() {
+	public void user_click_on_input_field()  {
 		homePage.clickPnrNum();
 		
 		
@@ -76,15 +79,81 @@ public class TrainsPage extends BaseSteps
 		homePage.clickSearch();
 	}
 
-	@Then("verify popup")
-	public void verify_popup() {
-		
+	@Then("verify Available Stations")
+	public void verify_available_stations() throws InterruptedException {
+	   homePage.verifyAvailableStations();
+	}
+	
+	// 4th Scenario starts from here
+	
+	@When("user clicks on Check Seat Availability")
+	public void user_clicks_on_check_seat_availability() throws InterruptedException {
+		homePage.clickSeatAvailability();
 	}
 
-	@Then("click on okay")
-	public void click_on_okay() {
-		
+	@When("User enters Source name from sheet {int} and row {int} and sourceCol {int}")
+	public void user_enters_source_name_from_sheet_and_row_and_source_col(Integer sheetIndex, Integer rowIndex, Integer sourceCol) throws InterruptedException {
+		String excelPathSO = prop.getProperty("excelpath");
+		Thread.sleep(5000);	     // to fetch source from Excel
+		String enteredSource = ExcelReader.getDataByRowCol(excelPathSO, sheetIndex, rowIndex, sourceCol);
+
+		// Print  source value
+		System.out.println("Source from Excel: " + enteredSource);
+
+		Assert.assertNotNull(enteredSource, "source not found at sheet " + sheetIndex + ", row " + rowIndex);
+		boolean statusSource = homePage.getSourceName(enteredSource);
+		Thread.sleep(5000);
+		Assert.assertTrue(statusSource);
 	}
+
+	@When("User enters Destination name from sheet {int} and row {int} and destinationCol {int}")
+	public void user_enters_destination_name_from_sheet_and_row_and_destination_col(Integer sheetIndex, Integer rowIndex, Integer destinationCol) {
+		String excelPathSO = prop.getProperty("excelpath");
+	     
+	     // to Fetch destination from Excel
+	     String enteredDestination = ExcelReader.getDestination(excelPathSO, sheetIndex, rowIndex, destinationCol);
+	     
+	     // Print actual destination value
+	     System.out.println("Destination from Excel: " + enteredDestination);
+	     
+	     Assert.assertNotNull(enteredDestination, "destination not found at sheet " + sheetIndex + ", row " + rowIndex);
+	     boolean statusDestination = homePage.getDestinationName(enteredDestination);
+	     Assert.assertTrue(statusDestination);
+	}
+
+	@When("user clicks on Check Availability")
+	public void user_clicks_on_check_availability() {
+		boolean status=homePage.click_On_search();
+		 Assert.assertTrue(status);
+	}
+
+	@Then("verify Trains Availability Page")
+	public void verify_trains_availability_page() {
+		boolean status=homePage.verify_Train_Data_Page();
+		 Assert.assertTrue(status);
+	}
+	
+	// 5th Scenario starts from here
+	
+	@When("the user clicks on offers")
+	public void the_user_clicks_on_offers() {
+		homePage.clickOffersPage();
+	    
+	}
+
+	@When("user clicks on TrainOffers")
+	public void user_clicks_on_train_offers() throws InterruptedException {
+		homePage.clicktrainoffers();
+	    
+	}
+
+	@Then("verify offers availability")
+	public void verify_offers_availability() throws InterruptedException {
+		homePage.verifyTrainOffers();
+	    
+	}
+	
+
 
 }
 
