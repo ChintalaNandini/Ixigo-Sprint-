@@ -40,8 +40,8 @@ public class BaseSteps {
         String url=prop.getProperty("sourceUrl");
         driver.get(url);
         driver.manage().window().maximize();
-        String targeturl=prop.getProperty("targetUrl");
-        driver.get(targeturl);
+//        String targeturl=prop.getProperty("targetUrl");
+//        driver.get(targeturl);
 
     }
     public static void sleep(int msec) {//handling waits 

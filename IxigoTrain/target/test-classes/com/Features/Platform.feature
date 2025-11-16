@@ -2,33 +2,31 @@ Feature: Train Functionality
 
 @First
 Scenario: Verify that entering a valid train number displays the platform number.
- 
-	Given The user is on the Platform Locator page of the Ixigo website.
-	When The user enters a validTrainNumber in the search input field.
-	And clicks Search
-	Then The platform number for the entered train should be displayed
+Given The user is on the trains home page of the Ixigo website.
+When the user clicks on platform locator
+And The user enters a validTrainNumber in the search input field.
+And user clicks on Search
+Then user is navigated to train platform locator displayed page. 
 	
  
 @Second
 Scenario: Book Now button should be visible and clickable for each available train
- 
-    Given the user is on the Train Home page
-    When the user clicks on Search by Station
-    And the user enters a valid stationName
-    And the user clicks on Search
-    Then the system should display a list of available trains
-    And click on Book Now button
-    Then user is navigated to Booking page
-    
-    
+Given the user is on the Train Home page
+When the user clicks on Search by Station
+And the user enters a valid stationName
+And the user clicks on Search
+Then the system should display a list of available trains
+And click on Book Now button
+Then user is navigated to Booking page
+       
     
 @Third
 Scenario: Verify download prompt appears after clicking check status
-  Given User is on Ixigo website and clicks on Trains tab
-  When User clicks on Running Status
-  And User enters train number or name 
-  And User clicks on check status button
-  Then Download prompt should appear allowing user to save train data
+Given User is on Ixigo website and clicks on Trains tab
+When User clicks on Running Status
+And User enters train number or name 
+And User clicks on check status button
+Then Download prompt should appear allowing user to save train data
   
   
   
@@ -63,5 +61,27 @@ Examples:
 |   0    |  2  |    0      |
 
 
+@Six
+Scenario Outline: Verify train search with same source and destination
+Given User is on Ixigo website and clicks on Trains tab
+When User enters Source  from sheet <sheet> and row <row> and sourceCol <sourceCol>
+And User enters Destination  from sheet <sheet> and row <row> and destinationCol <destinationCol>
+And User clicks on Search for train data
+Then Error messaged is displayed on the same search page.
+
+Examples:
+| sheet | row | sourceCol | destinationCol |
+|   0   |  0  |     0     |       1        |
+|   0   |  1  |     0     |       1        |
+|   0   |  2  |     0     |       1        |
 
 
+@Seven
+Scenario: Verify that sorting trains by Arrival Time works correctly
+Given user is on the ixigo home page and clicks on trains tab
+When the user clicks on Vande Bharath Express on the trains home page
+And the user enters the Source in the input text field
+And the user enters the Destination in the input text field
+And the user clicks on Search in search page
+And the user clicks on Arrival Time
+Then the list of trains should be displayed sorted by Arrival Time
