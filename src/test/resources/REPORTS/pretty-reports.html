@@ -1,0 +1,68 @@
+
+@1st
+[1mScenario:[22m Validate navigation from Ixigo Home page to Offers page [90m# ./src/test/resources/com/features/Search.feature:4[39m
+  [32m✔[39m [32m[1mGiven [22mUser launches Ixigo website[39m                             [90m# com.StepDefinitionTestNG.Profile.user_launches_ixigo_website()[39m
+  [32m✔[39m [32m[1mWhen [22mUser navigates to Offers page[39m                            [90m# com.StepDefinitionTestNG.Profile.user_navigates_to_offers_page()[39m
+  [32m✔[39m [32m[1mAnd [22mValidate Offers page is opened successfully[39m               [90m# com.StepDefinitionTestNG.Profile.validate_offers_page_is_opened_successfully()[39m
+  [32m✔[39m [32m[1mThen [22mPrint and validate title of the webpage[39m                  [90m# com.StepDefinitionTestNG.Profile.print_and_validate_title_of_the_webpage()[39m
+
+@2nd
+[1mScenario:[22m Verify navigation to Track Ticket page and UI elements          [90m# ./src/test/resources/com/features/Search.feature:11[39m
+  [32m✔[39m [32m[1mGiven [22mUser launches  the Ixigo website[39m                                [90m# com.StepDefinitionTestNG.Profile.user_launches_the_ixigo_website()[39m
+  [32m✔[39m [32m[1mWhen [22mUser navigates to Offers page[39m                                    [90m# com.StepDefinitionTestNG.Profile.user_navigates_to_offers_page()[39m
+  [32m✔[39m [32m[1mAnd [22mthe user clicks on the Track Ticket option[39m                        [90m# com.StepDefinitionTestNG.Profile.the_user_clicks_on_the_track_ticket_option()[39m
+  [32m✔[39m [32m[1mAnd [22mthe Track Ticket page should be displayed[39m                         [90m# com.StepDefinitionTestNG.Profile.the_track_ticket_page_should_be_displayed()[39m
+  [32m✔[39m [32m[1mAnd [22mthe page title should be Enter Ticket Details[39m                     [90m# com.StepDefinitionTestNG.Profile.the_page_title_should_be_enter_ticket_details()[39m
+  [32m✔[39m [32m[1mAnd [22mthe user should see input fields for Booking ID and Mobile Number[39m [90m# com.StepDefinitionTestNG.Profile.the_user_should_see_input_fields_for_booking_id_and_mobile_number()[39m
+  [32m✔[39m [32m[1mAnd [22ma Track Details button should be visible[39m                          [90m# com.StepDefinitionTestNG.Profile.a_track_details_button_should_be_visible()[39m
+  [32m✔[39m [32m[1mThen [22mthe Frequently Asked Questions section should be displayed[39m       [90m# com.StepDefinitionTestNG.Profile.the_frequently_asked_questions_section_should_be_displayed()[39m
+
+@3rd
+[1mScenario:[22m Search buses from offers page      [90m# ./src/test/resources/com/features/Search.feature:22[39m
+  [32m✔[39m [32m[1mGiven [22mUser launches the Ixigo Website[39m    [90m# com.StepDefinitionTestNG.Profile.user_launches_the_ixigo_website1()[39m
+  [32m✔[39m [32m[1mWhen [22muser navigates to the offers page[39m   [90m# com.StepDefinitionTestNG.Profile.user_navigates_to_the_offers_page()[39m
+  [32m✔[39m [32m[1mAnd [22muser enters from station FromStation[39m [90m# com.StepDefinitionTestNG.Profile.user_enters_from_station_from_station()[39m
+  [32m✔[39m [32m[1mAnd [22muser enters to station ToStation[39m     [90m# com.StepDefinitionTestNG.Profile.user_enters_to_station_to_station()[39m
+  [32m✔[39m [32m[1mAnd [22muser clicks on search[39m                [90m# com.StepDefinitionTestNG.Profile.user_clicks_on_search()[39m
+  [32m✔[39m [32m[1mThen [22msearch results should be displayed[39m  [90m# com.StepDefinitionTestNG.Profile.search_results_should_be_displayed()[39m
+
+@4th
+[1mScenario Outline:[22m Verify bus search with valid source and destination using excel data [90m# ./src/test/resources/com/features/Search.feature:40[39m
+  [32m✔[39m [32m[1mGiven [22mUser is on Ixigo website and navigates to Offers page[39m                        [90m# com.StepDefinitionTestNG.Profile.user_is_on_ixigo_website_and_navigates_to_offers_page()[39m
+  [32m✔[39m [32m[1mWhen [22mUser enters From station name from sheet [1m0[22m and row [1m1[22m and fromCol [1m0[22m[39m            [90m# com.StepDefinitionTestNG.Profile.user_enters_from_station_name_from_sheet_and_row_and_from_col(java.lang.Integer,java.lang.Integer,java.lang.Integer)[39m
+  [32m✔[39m [32m[1mAnd [22mUser enters To station name from sheet [1m0[22m and row [1m1[22m and toCol [1m1[22m[39m                 [90m# com.StepDefinitionTestNG.Profile.user_enters_to_station_name_from_sheet_and_row_and_to_col(java.lang.Integer,java.lang.Integer,java.lang.Integer)[39m
+  [32m✔[39m [32m[1mAnd [22mUser clicks on search for buses data[39m                                           [90m# com.StepDefinitionTestNG.Profile.user_clicks_on_search_for_buses_data()[39m
+  [32m✔[39m [32m[1mThen [22mUser verifies bus details page is displayed[39m                                   [90m# com.StepDefinitionTestNG.Profile.user_verifies_bus_details_page_is_displayed()[39m
+
+@4th
+[1mScenario Outline:[22m Verify bus search with valid source and destination using excel data [90m# ./src/test/resources/com/features/Search.feature:41[39m
+  [32m✔[39m [32m[1mGiven [22mUser is on Ixigo website and navigates to Offers page[39m                        [90m# com.StepDefinitionTestNG.Profile.user_is_on_ixigo_website_and_navigates_to_offers_page()[39m
+  [32m✔[39m [32m[1mWhen [22mUser enters From station name from sheet [1m0[22m and row [1m2[22m and fromCol [1m0[22m[39m            [90m# com.StepDefinitionTestNG.Profile.user_enters_from_station_name_from_sheet_and_row_and_from_col(java.lang.Integer,java.lang.Integer,java.lang.Integer)[39m
+  [32m✔[39m [32m[1mAnd [22mUser enters To station name from sheet [1m0[22m and row [1m2[22m and toCol [1m1[22m[39m                 [90m# com.StepDefinitionTestNG.Profile.user_enters_to_station_name_from_sheet_and_row_and_to_col(java.lang.Integer,java.lang.Integer,java.lang.Integer)[39m
+  [32m✔[39m [32m[1mAnd [22mUser clicks on search for buses data[39m                                           [90m# com.StepDefinitionTestNG.Profile.user_clicks_on_search_for_buses_data()[39m
+  [32m✔[39m [32m[1mThen [22mUser verifies bus details page is displayed[39m                                   [90m# com.StepDefinitionTestNG.Profile.user_verifies_bus_details_page_is_displayed()[39m
+
+@5th
+[1mScenario Outline:[22m User searches for buses and applies bus type filter                     [90m# ./src/test/resources/com/features/Search.feature:53[39m
+  [32m✔[39m [32m[1mGiven [22mUser is on Ixigo homepage and User navigates to Offers page[39m                     [90m# com.StepDefinitionTestNG.Profile.user_is_on_ixigo_homepage_and_user_navigates_to_offers_page()[39m
+  [32m✔[39m [32m[1mWhen [22mUser enters From station name from sheet [1m1[22m and row [1m0[22m and fromCol [1m0[22m[39m               [90m# com.StepDefinitionTestNG.Profile.user_enters_from_station_name_from_sheet_and_row_and_from_col(java.lang.Integer,java.lang.Integer,java.lang.Integer)[39m
+  [32m✔[39m [32m[1mAnd [22mUser enters To station name from sheet [1m1[22m and row [1m0[22m and toCol [1m1[22m[39m                    [90m# com.StepDefinitionTestNG.Profile.user_enters_to_station_name_from_sheet_and_row_and_to_col(java.lang.Integer,java.lang.Integer,java.lang.Integer)[39m
+  [32m✔[39m [32m[1mAnd [22mUser clicks on Search button then Bus listing page should display available buses[39m [90m# com.StepDefinitionTestNG.Profile.user_clicks_on_search_button_then_bus_listing_page_should_display_available_buses()[39m
+  [32m✔[39m [32m[1mThen [22mUser selects BusType filter and bus list gets updated[39m                            [90m# com.StepDefinitionTestNG.Profile.user_selects_bus_type_filter_and_bus_list_gets_updated()[39m
+
+@5th
+[1mScenario Outline:[22m User searches for buses and applies bus type filter                     [90m# ./src/test/resources/com/features/Search.feature:54[39m
+  [32m✔[39m [32m[1mGiven [22mUser is on Ixigo homepage and User navigates to Offers page[39m                     [90m# com.StepDefinitionTestNG.Profile.user_is_on_ixigo_homepage_and_user_navigates_to_offers_page()[39m
+  [32m✔[39m [32m[1mWhen [22mUser enters From station name from sheet [1m1[22m and row [1m1[22m and fromCol [1m0[22m[39m               [90m# com.StepDefinitionTestNG.Profile.user_enters_from_station_name_from_sheet_and_row_and_from_col(java.lang.Integer,java.lang.Integer,java.lang.Integer)[39m
+  [32m✔[39m [32m[1mAnd [22mUser enters To station name from sheet [1m1[22m and row [1m1[22m and toCol [1m1[22m[39m                    [90m# com.StepDefinitionTestNG.Profile.user_enters_to_station_name_from_sheet_and_row_and_to_col(java.lang.Integer,java.lang.Integer,java.lang.Integer)[39m
+  [32m✔[39m [32m[1mAnd [22mUser clicks on Search button then Bus listing page should display available buses[39m [90m# com.StepDefinitionTestNG.Profile.user_clicks_on_search_button_then_bus_listing_page_should_display_available_buses()[39m
+  [32m✔[39m [32m[1mThen [22mUser selects BusType filter and bus list gets updated[39m                            [90m# com.StepDefinitionTestNG.Profile.user_selects_bus_type_filter_and_bus_list_gets_updated()[39m
+
+@6th
+[1mScenario:[22m Validate that the system shows No services available message [90m# ./src/test/resources/com/features/Search.feature:57[39m
+  [32m✔[39m [32m[1mGiven [22mthe user launches the Ixigo bus website[39m                      [90m# com.StepDefinitionTestNG.Profile.the_user_launches_the_ixigo_bus_website()[39m
+  [32m✔[39m [32m[1mWhen [22mthe user navigates to the Offers page[39m                         [90m# com.StepDefinitionTestNG.Profile.the_user_navigates_to_the_offers_page()[39m
+  [32m✔[39m [32m[1mAnd [22mthe user enters City in the From Station field[39m                 [90m# com.StepDefinitionTestNG.Profile.the_user_enters_city_in_the_from_station_field()[39m
+  [32m✔[39m [32m[1mAnd [22mthe user enters City in the To Station field[39m                   [90m# com.StepDefinitionTestNG.Profile.the_user_enters_city_in_the_to_station_field()[39m
+  [32m✔[39m [32m[1mAnd [22mthe user clicks on the Search button[39m                           [90m# com.StepDefinitionTestNG.Profile.the_user_clicks_on_the_search_button()[39m
+  [32m✔[39m [32m[1mThen [22mthe system should  validate and display the message[39m           [90m# com.StepDefinitionTestNG.Profile.the_system_should_validate_and_display_the_message()[39m
