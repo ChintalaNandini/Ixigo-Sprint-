@@ -97,14 +97,30 @@ public class Hooks {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //package com.stepDefinitionTestNG;
-// 
+//import com.setup.BaseSteps;
 //import com.aventstack.extentreports.ExtentReports;
 //import com.aventstack.extentreports.ExtentTest;
 ////import com.aventstack.extentreports.gherkin.model.Scenario;
 //import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-//import com.setup.BaseSteps;
-//
+// 
 //import io.cucumber.java.After;
 //import io.cucumber.java.AfterAll;
 //import io.cucumber.java.Before;
@@ -121,6 +137,7 @@ public class Hooks {
 //        extReports = new ExtentReports();
 //        extReports.attachReporter(spark);
 //    }
+//    
 //    @AfterAll
 //    public static void afterAll() {			//code runs after feature file ends 
 //        extReports.flush();		//to generate the report
@@ -163,8 +180,20 @@ public class Hooks {
 
 
 
-//package com.stepDefinitionTestNG;
-//
+
+
+
+
+
+
+
+
+
+
+
+
+
+//import com.aventstack.extentreports.ExtentTest;
 //import com.setup.BaseSteps;
 //import io.cucumber.java.After;
 //import io.cucumber.java.Before;
@@ -176,11 +205,11 @@ public class Hooks {
 //import java.io.IOException;
 //import java.util.Properties;
 //
-//public class Hooks extends BaseSteps{
-//	
+//public class Hooks {
 //
 //    Properties prop = new Properties();
-//
+//    public static ExtentTest test;		
+//    
 //    @Before
 //    public void setUp() {
 //        try {
@@ -198,86 +227,11 @@ public class Hooks {
 //        BaseSteps.driver.get(sourceUrl);
 //    }
 //
-////    @After
-////    public void tearDown() {
-////        if (BaseSteps.driver != null) {
-////            BaseSteps.driver.quit();
-////        }
-////    }
+//    @After
+//    public void tearDown() {
+//        if (BaseSteps.driver != null) {
+//            BaseSteps.driver.quit();
+//        }
+//    }
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
