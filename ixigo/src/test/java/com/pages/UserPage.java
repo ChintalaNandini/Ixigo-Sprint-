@@ -28,17 +28,17 @@ import org.testng.IDynamicGraph.Status;
 import com.google.common.collect.Table.Cell;
 import com.parameters.ExcelReader;
 import com.setup.BaseSteps;
-import com.setup.Reports;
-
 import net.masterthought.cucumber.json.Row;
 
 
-public class UserPage extends BaseSteps {
+public class UserPage extends BaseSteps 
+{
 	private static WebDriver driver;
 	private static WebDriverWait wait;
 	private ExcelReader excelReader;
 
-	public UserPage(WebDriver driver) {
+	public UserPage(WebDriver driver) 
+	{
 		this.driver = driver;
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		PageFactory.initElements(driver, this);
@@ -49,23 +49,23 @@ public class UserPage extends BaseSteps {
 
 	@FindBy(css = "button[data-testid=\"search-hotels\"] > div.flex.items-center.gap-5.font-medium")
 	private WebElement searchButton;
-//	@FindBy(css = ".container .sticky .mb-20.cursor-pointer.rounded-10.bg-primary.text-center")
-//	private WebElement googleM;
-	@FindBy(css = ".sticky .mb-20 .body-md.py-10.text-brand")
+
+	@FindBy(css = "p.body-md.py-10.text-brand")
 	private WebElement googleM;
 	
 	
 
-	public void clickSearch() throws InterruptedException {
+	public void clickSearch() throws InterruptedException 
+	{
 		searchButton.click();
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 	}
 	
 	public void googleMap() throws InterruptedException
 	{
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-		Thread.sleep(2000); // Not ideal, but can help in flaky UI
-		driver.findElement(By.cssSelector("p.body-md.py-10.text-brand")).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.elementToBeClickable(googleM)).click();
+		Thread.sleep(2000);
 	}
 
 	//second scenario
@@ -83,8 +83,10 @@ public class UserPage extends BaseSteps {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 			wait.until(ExpectedConditions.elementToBeClickable(clickhotel)).click();
 			String originalWindow = driver.getWindowHandle();
-			for (String windowHandle : driver.getWindowHandles()) {
-				if (!windowHandle.equals(originalWindow)) {
+			for (String windowHandle : driver.getWindowHandles()) 
+			{
+				if (!windowHandle.equals(originalWindow)) 
+				{
 					driver.switchTo().window(windowHandle);
 					break;
 				}
@@ -119,26 +121,25 @@ public class UserPage extends BaseSteps {
 	private WebElement searchbtn1;
 
 
-	public void clickoffers() throws InterruptedException {
+	public void clickOffers() throws InterruptedException 
+	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		
 		wait.until(ExpectedConditions.elementToBeClickable(offersbtn)).click();
 	    Thread.sleep(2000);
 	}
 
-	public void clicksearchhotels() throws InterruptedException {
+	public void clickSearchHotels() throws InterruptedException 
+	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-	
 		wait.until(ExpectedConditions.elementToBeClickable(searchbtn)).click();
 		Thread.sleep(2000);
-
 	}
-	public void clickhotelssearch() throws InterruptedException {
+	public void clickHotelsSearch() throws InterruptedException 
+	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-
 		wait.until(ExpectedConditions.elementToBeClickable(searchbtn1)).click();
 		Thread.sleep(2000);
-
 	}
 	
 
@@ -148,18 +149,17 @@ public class UserPage extends BaseSteps {
 	@FindBy(xpath = "//input[@placeholder='Enter city, area or property name']")
 	private WebElement hotelInputLocator;
 	
-	public boolean clickAndEnterHotelDestination(String destination) {
+	public boolean clickAndEnterHotelDestination(String destination) 
+	{
 	    boolean actResult = true;
 	    try {
-	        //By hotelInputLocator = By.xpath("//input[@placeholder='Enter city, area or property name']");
 	        WebElement hotelInput = wait.until(ExpectedConditions.elementToBeClickable(hotelInputLocator));
 	        hotelInput.click();
 	        System.out.println("clicked");
-	        Thread.sleep(2000); // Optional: allow UI to stabilize
+	        Thread.sleep(2000); 
 	        hotelInput.clear();
 	        hotelInput.sendKeys(destination);
 	        Thread.sleep(3000); // Allow suggestions to load
-
 	        
 	    } catch (Exception e) {
 	        actResult = false;
@@ -191,19 +191,18 @@ public class UserPage extends BaseSteps {
 	@FindBy(xpath = "//button[@data-testid='search-hotels']")
 	private WebElement viewButton2;
 	
-	public void searchdestination() throws InterruptedException
+	public void searchDestination() throws InterruptedException
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-
 		// Wait for the first hotel card link to be clickable
 		wait.until(ExpectedConditions.elementToBeClickable(viewButton2)).click();
 		Thread.sleep(2000);
-
 	}
 	
 
 
 //===============================================
+	
 	@FindBy(css = ".body-sm.text-xl.text-primary")
 	private WebElement hotels;
 	@FindBy(xpath = "//button//div[contains(@class,\"relative\") and contains(@class,\"h-[160px]\")]")
@@ -263,6 +262,11 @@ public class UserPage extends BaseSteps {
 	        numberInput.click();
 	        Thread.sleep(4000);
 	        numberInput.sendKeys(number);
+	        String invalidnum = number;
+	        if (invalidnum.length() < 10 || invalidnum.length() > 10) {
+	            System.out.println("Invalid Number: Length must be exactly 10 digits");
+	        }
+  
 	    } catch (Exception e) {
 	        actResult = false;
 	    }
@@ -270,7 +274,7 @@ public class UserPage extends BaseSteps {
 	}
 	
 	
-	public void clickLogincontinue() throws InterruptedException
+	public void clickLoginContinue() throws InterruptedException
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		// Wait for the button link to be clickable
