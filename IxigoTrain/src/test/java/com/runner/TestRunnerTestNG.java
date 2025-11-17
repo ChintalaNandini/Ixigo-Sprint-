@@ -10,7 +10,7 @@ import io.cucumber.testng.CucumberOptions;
 	//tags="@Third",
 		//tags="@Fourth",
         // tags="@Fifth",
-			//	tags="@Six",
+				//tags="@Six",
 				//tags="@Seven",
 	       plugin = {"pretty", "html:Reports/cucumber-reports.html",
 	    		   "json:reports/json-report.json",
