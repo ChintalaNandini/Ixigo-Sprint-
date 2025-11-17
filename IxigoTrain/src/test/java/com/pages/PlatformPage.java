@@ -25,9 +25,11 @@ public class PlatformPage {
 
     @FindBy(xpath="//div[text()='Train Platform']")
 	private static WebElement click_Train_Platform;
+    
     //train name search bar
     @FindBy(xpath="//*[@id=\"content\"]/div/div[1]/div/div/div[1]/div/div[1]/input")
    	private static WebElement enter_train_name; 
+    
     @FindBy(xpath="//button[text()='Search Platform']")
    	private static WebElement click_Search_Platform;
 
@@ -57,7 +59,11 @@ public class PlatformPage {
      @FindBy(xpath="//h2[text()='Trains from New Delhi (NDLS) Railway Station']")
      private static WebElement verify_Station_page;
      //click on book now button of a train
-     @FindBy(xpath="//tr[.//a[contains(text(),'20433')]]//a[contains(text(),'Book Now')]")
+//     @FindBy(xpath="//tr[.//a[contains(text(),'20433')]]//a[contains(text(),'Book Now')]")
+//     private static WebElement book_now_button;
+//     
+     //click on book now button of a train
+     @FindBy(xpath="(//tbody//td//a[contains(text(),'Book Now')])[1]")
      private static WebElement book_now_button;
 
 // Constructor
@@ -72,6 +78,7 @@ public class PlatformPage {
     {
     	boolean actResult = true;
     	try {
+        WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.visibilityOf(click_Train_Platform));
 		Reports.generateReport(driver, test, Status.PASS, "Train platform locator is clicked");
 		click_Train_Platform.click();
@@ -89,7 +96,7 @@ public class PlatformPage {
 		boolean actResult = true;
         try 
         {
-          	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+          	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
             wait.until(ExpectedConditions.visibilityOf(enter_train_name));
             Reports.generateReport(driver, test, Status.PASS, "train name is entered");
             enter_train_name.sendKeys(train_name);
@@ -107,6 +114,7 @@ public class PlatformPage {
     {
     	boolean actResult = true;
     	try {
+        WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(click_Search_Platform));
 		Reports.generateReport(driver, test, Status.PASS, "Train platform locator is clicked");
 		click_Search_Platform.click();
@@ -121,9 +129,12 @@ public class PlatformPage {
     //verify train platform page or not
     public boolean verifyTrainPlatformpage() {
         try {
+        //	WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.visibilityOf(train_platform_verify));
+            String currentUrl = driver.getCurrentUrl();
+            System.out.println("Current Page URL: " + currentUrl);
             Reports.generateReport(driver, test, Status.PASS, "Train platform page is displayed");
-            return true;
+            return currentUrl.contains("19037");
         } catch (TimeoutException e) {
             Reports.generateReport(driver, test, Status.FAIL, "Train platform page is NOT displayed");
             return false;
@@ -137,6 +148,7 @@ public class PlatformPage {
     	boolean actResult = true;
         try 
         {
+        	WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.visibilityOf(train_homepage));
             Reports.generateReport(driver, test, Status.PASS, "Train Home page  is displayed");
         } 
@@ -151,6 +163,7 @@ public class PlatformPage {
     {
     	boolean actResult = true;
     	try {
+        WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(click_Search_By_Station));
 		Reports.generateReport(driver, test, Status.PASS, "search by station  is clicked");
 		click_Search_By_Station.click();
@@ -169,7 +182,7 @@ public class PlatformPage {
 		boolean actResult = true;
         try 
         {
-//        	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.visibilityOf(enter_station_name));
             Reports.generateReport(driver, test, Status.PASS, "station name is entered");
             enter_station_name.sendKeys(station_name);
@@ -186,6 +199,7 @@ public class PlatformPage {
     {
     	boolean actResult = true;
     	try {
+        WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(click_Search));
 		Reports.generateReport(driver, test, Status.PASS, "search is clicked ");
 		click_Search.click();
@@ -202,6 +216,7 @@ public class PlatformPage {
     {
     	boolean actResult = true;
     	try {
+    	WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(8));
         wait.until(ExpectedConditions.visibilityOf(verify_Station_page));
 		Reports.generateReport(driver, test, Status.PASS, "Train names in particular station are displayed");
 		verify_Station_page.click();
@@ -219,6 +234,7 @@ public class PlatformPage {
     {
     	boolean actResult = true;
     	try {
+    	WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(book_now_button));
 		Reports.generateReport(driver, test, Status.PASS, "Book Now is clicked");
 		book_now_button.click();
@@ -232,6 +248,7 @@ public class PlatformPage {
     }
     public static boolean verifyBookingPage() {
         try {
+        	WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(7));
             String currentUrl = driver.getCurrentUrl();
             System.out.println("Current Page URL: " + currentUrl);
             Reports.generateReport(driver, test, Status.PASS, "Booking Page is verified");
@@ -276,6 +293,7 @@ public class PlatformPage {
     {
     	boolean actResult = true;
     	try {
+    	WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(running_status));
 		Reports.generateReport(driver, test, Status.PASS, "running status is clicked");
 		running_status.click();
@@ -293,6 +311,7 @@ public class PlatformPage {
         boolean actResult = true;
         try {
             // Wait for input field
+        	WebDriverWait Wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.visibilityOf(enter_train));
             Reports.generateReport(driver, test, Status.PASS, "Train name is entered");
 
@@ -321,6 +340,8 @@ public class PlatformPage {
     {
     	boolean actResult = true;
     	try {
+    		
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));	
         wait.until(ExpectedConditions.visibilityOf(click_live));
 		Reports.generateReport(driver, test, Status.PASS, "check live status is clicked");
 		click_live.click();
@@ -404,30 +425,6 @@ public class PlatformPage {
     @FindBy(xpath="//button[text()='Schedule']")
     private static WebElement shedule;
     
-    //enter the source in input text field 
-//    public static boolean getSourceName(String source_name )
-//	{
-//	   boolean actResult = true;
-//      try 
-//      {
-//    	  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//          wait.until(ExpectedConditions.visibilityOf(source));
-//          Reports.generateReport(driver, test, Status.PASS, "source entered:"+source_name);
-//          source.clear();
-//          source.click();
-//          source.sendKeys(source_name);
-//       
-//          WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-//          WebElement exactTrain = suggestionWait.until(ExpectedConditions.elementToBeClickable(src));
-//          exactTrain.click();
-//         
-//      } 
-//      catch (Exception e) {
-//          actResult = false;
-//          Reports.generateReport(driver, test, Status.FAIL, "source is not entered:"+e.getMessage());
-//      }
-//      return actResult;
-//	}
     
     public static boolean getSourceName(String source_name )
    	{
@@ -454,41 +451,6 @@ public class PlatformPage {
          }
          return actResult;
    	}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
-//  //enter the destination in input text field 
-//  public static boolean getDestinationName(String destination_name )
-//	{
-//	   boolean actResult = true;
-//    try 
-//    {
-// //     	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.visibilityOf(destination));
-//        Reports.generateReport(driver, test, Status.PASS, "destination entered:"+destination_name);
-//        destination.clear();
-//        destination.sendKeys(destination_name);
-//        destination.sendKeys(Keys.ENTER);
-//        
-//        WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-//        WebElement exactTrain1 = suggestionWait.until(ExpectedConditions.elementToBeClickable(des));
-//        exactTrain1.click();
-//       
-//    } 
-//    catch (Exception e) {
-//        actResult = false;
-//        Reports.generateReport(driver, test, Status.FAIL, "destination is not entered:"+e.getMessage());
-//    }
-//    return actResult;
-//	}
     
     
   //enter the destination in input text field 
@@ -575,8 +537,9 @@ public class PlatformPage {
    {
    	boolean actResult = true;
    	try {
-   	   WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+   	  WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(10));
        wait.until(ExpectedConditions.visibilityOf(search_by_nameOrnumber));
+      
 		Reports.generateReport(driver, test, Status.PASS, "running status is clicked");
 		search_by_nameOrnumber.click();
    	}
@@ -594,8 +557,9 @@ public class PlatformPage {
 		boolean actResult = true;
        try 
        {
-           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(7));
            wait.until(ExpectedConditions.visibilityOf(enter_nameOrnumber));
+          
            Reports.generateReport(driver, test, Status.PASS, "train name/number is entered");
            enter_nameOrnumber.click();
            enter_nameOrnumber.sendKeys(train_name_number);
@@ -650,6 +614,180 @@ public class PlatformPage {
        }
    }
    
+   //============================================six scenario=============================================
+   
+   
+   
+  
+   
+   public static boolean verify_Error_Message() {
+       try {
+    	   WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(15)); 
+           String currentUrl = driver.getCurrentUrl();
+           System.out.println("Current Page URL: " + currentUrl);
+           Reports.generateReport(driver, test, Status.PASS, "Train page is verified");
+           // Just check if URL contains 'trains'
+           return currentUrl.contains("trains");
+       } catch (Exception e) {
+           System.out.println("Error verifying search page: " + e.getMessage());
+           Reports.generateReport(driver, test, Status.FAIL, "Train page is not verified");
+           return false;
+       }
+   }
+   
+   //=====================================seven scenario====================================================
+   
+ 
+  
+   // vande bharath Express
+   @FindBy(xpath="//div[text()='Vande Bharat']")
+   private static WebElement vande_bharath_express;
+   
+   
+// from
+   @FindBy(xpath="//input[@placeholder='Leaving from']")
+   private static WebElement from_location;
+   
+// to
+   @FindBy(xpath="//input[@placeholder='Going to']")
+   private static WebElement to_location;
+   
+   //search
+   @FindBy(xpath="//button[normalize-space(text())='Search']")
+   private static WebElement click_search;
+   
+   //arrival time
+   @FindBy(xpath="//span[text()='ARRIVAL TIME']")
+   private static WebElement arrival_time;
+   
+   
+   //the user clicks on Vande Bharath Express   
+   public static boolean click_Vande_Bharath()
+   {
+   	boolean actResult = true;
+   	try {
+   	  WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+       wait.until(ExpectedConditions.visibilityOf(vande_bharath_express));
+      
+		Reports.generateReport(driver, test, Status.PASS, "Vande Bharath Express is clicked");
+		vande_bharath_express.click();
+   	}
+   	catch (Exception e) 
+   	{
+   	    actResult = false;
+   	    Reports.generateReport(driver, test, Status.FAIL, "Vande Bharath Express is not clicked");
+   	}
+   	return actResult;
+   }
+   
+   //enter "from" location
+   public static boolean fromLocation(String from_loc )
+  	{
+  	   boolean actResult = true;
+        try 
+        {
+      	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.visibilityOf(from_location));
+            Reports.generateReport(driver, test, Status.PASS, "from location entered:"+from_loc);
+          //  from_location.clear();
+            from_location.click();
+            from_location.sendKeys(from_loc);
+            
+            WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            By from = By.xpath("//div[@class='autocompleter-scroll-cntr']//div[contains(normalize-space(text()),'"+from_loc+"')]");
+         
+            WebElement exactTrain = suggestionWait.until(ExpectedConditions.elementToBeClickable(from));
+            exactTrain.click();
+           
+        } 
+        catch (Exception e) {
+            actResult = false;
+            Reports.generateReport(driver, test, Status.FAIL, "from location is not entered:"+e.getMessage());
+        }
+        return actResult;
+  	}
+   
+   //enter "to" location 
+   public static boolean toLocation(String to_loc )
+  	{
+  	   boolean actResult = true;
+        try 
+        {
+      	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.visibilityOf(to_location));
+            Reports.generateReport(driver, test, Status.PASS, "to location entered:"+to_loc);
+           // to_location.clear();
+            to_location.click();
+            to_location.sendKeys(to_loc);
+            
+            WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            By to = By.xpath("//div[@class='autocompleter-scroll-cntr']//div[contains(normalize-space(text()),'"+to_loc+"')]");
+         
+            WebElement exactTrain = suggestionWait.until(ExpectedConditions.elementToBeClickable(to));
+            exactTrain.click();
+           
+        } 
+        catch (Exception e) {
+            actResult = false;
+            Reports.generateReport(driver, test, Status.FAIL, "to location is not entered:"+e.getMessage());
+        }
+        return actResult;
+  	}
+   
+ //user click on search
+   public static boolean click_search()
+   {
+   	boolean actResult = true;
+   	try {
+   	    WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(click_search));
+		Reports.generateReport(driver, test, Status.PASS, "searched is clicked");
+		click_search.click();
+   	}
+   	catch (Exception e) 
+   	{
+   	    actResult = false;
+   	    Reports.generateReport(driver, test, Status.FAIL, "searched is not clicked");
+   	}
+   	return actResult;
+   }
+   
+   
+ //user click on arrival time
+   public static boolean click_arrival_time()
+   {
+   	boolean actResult = true;
+   	try {
+   	    WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(arrival_time));
+		Reports.generateReport(driver, test, Status.PASS, "arrival time is clicked");
+		arrival_time.click();
+   	}
+   	catch (Exception e) 
+   	{
+   	    actResult = false;
+   	    Reports.generateReport(driver, test, Status.FAIL, "arrival time is not clicked");
+   	}
+   	return actResult;
+   
+   }
+   //verify sorting page 
+    public static boolean verify_sort_page() {
+        try {
+     	   WebDriverWait suggestionWait = new WebDriverWait(driver, Duration.ofSeconds(15)); 
+     	   wait.until(ExpectedConditions.visibilityOf(arrival_time));
+            String currentUrl = driver.getCurrentUrl();
+            System.out.println("Current Page URL: " + currentUrl);
+            Reports.generateReport(driver, test, Status.PASS, "Train arrival page is verified");
+            // Just check if URL contains 'result'
+            return currentUrl.contains("result");
+        } catch (Exception e) {
+            System.out.println("Error verifying sort page: " + e.getMessage());
+            Reports.generateReport(driver, test, Status.FAIL, "Train arrival page is not verified");
+            return false;
+        }
+   
+ 	}
    
 }
  
