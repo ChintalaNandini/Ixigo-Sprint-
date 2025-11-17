@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="216.719" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-11-17T14:45:16.011601200Z">
+<testcase classname="Hotels Page Functionality" name="Validate Hotels page and search button" time="19.812">
+<system-out><![CDATA[
+Given I am on the Ixigo homepage............................................passed
+When I click on the Hotels tab..............................................passed
+And I click on the Search button without entering any details...............passed
+And I click on the Google Map...............................................passed
+Then I should remain on the Hotels page or see a Googlemap..................passed
+]]></system-out>
+</testcase>
+<testcase classname="Hotels Page Functionality" name="Validate Top Hotels functionality" time="13.38">
+<system-out><![CDATA[
+Given I am on the Ixigo homepage............................................passed
+When I click on the Hotels tab..............................................passed
+And I click on the hotel....................................................passed
+Then I should navigate to the next page.....................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Hotels Page Functionality" name="Validate OffersPage functionality" time="18.754">
+<system-out><![CDATA[
+Given I am on the Hotels Page...............................................passed
+When I click on the offers..................................................passed
+And click on the Search Hotels..............................................passed
+And click on the Hotelpage search...........................................passed
+Then I should the get the list of hotels....................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Hotels Page Functionality" name="User searches for hotels by destination - #1.1" time="34.148">
+<system-out><![CDATA[
+Given the user is on the Ixigo homepage.....................................passed
+When the user clicks on the hotels tab......................................passed
+And the user enters a 00 destination in the search field....................passed
+And the user clicks on the search button....................................passed
+Then the user should see a list of available hotels displayed...............passed
+]]></system-out>
+</testcase>
+<testcase classname="Hotels Page Functionality" name="User searches for hotels by destination - #1.2" time="17.888">
+<system-out><![CDATA[
+Given the user is on the Ixigo homepage.....................................passed
+When the user clicks on the hotels tab......................................passed
+And the user enters a 01 destination in the search field....................passed
+And the user clicks on the search button....................................passed
+Then the user should see a list of available hotels displayed...............passed
+]]></system-out>
+</testcase>
+<testcase classname="Hotels Page Functionality" name="Validating hotel overview and login functionalities - #1.1" time="36.775">
+<system-out><![CDATA[
+Given User is on the Hotels homepage........................................passed
+When User clicks on the selected hotel......................................passed
+And User try to reserve one room............................................passed
+And User enters the 10 mobile number to login...............................passed
+And User clicks on continue button..........................................passed
+Then the login through mobile number is verified............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Hotels Page Functionality" name="Validating hotel overview and login functionalities - #1.2" time="38.432">
+<system-out><![CDATA[
+Given User is on the Hotels homepage........................................passed
+When User clicks on the selected hotel......................................passed
+And User try to reserve one room............................................passed
+And User enters the 11 mobile number to login...............................passed
+And User clicks on continue button..........................................passed
+Then the login through mobile number is verified............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Hotels Page Functionality" name="Validating hotel overview and login functionalities - #1.3" time="36.803">
+<system-out><![CDATA[
+Given User is on the Hotels homepage........................................passed
+When User clicks on the selected hotel......................................passed
+And User try to reserve one room............................................passed
+And User enters the 12 mobile number to login...............................passed
+And User clicks on continue button..........................................passed
+Then the login through mobile number is verified............................passed
+]]></system-out>
+</testcase>
+</testsuite>
