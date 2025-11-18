@@ -1,28 +1,22 @@
 package com.setup;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
- 
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 
-import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
- 
+
 public class Reports {
-	public static ExtentReports extent;
-	public static ExtentTest test;
-	
     public static void generateReport(WebDriver driver, ExtentTest test, Status status, String stepMessage) {
-    	//test=extentTest;
         //driver is used to open website
     	//ExtentTest is used to generate reports
     	//status is a class 
@@ -34,7 +28,7 @@ public class Reports {
         } 
     	else if (status.equals(Status.FAIL)) 
     	{
-            // Take screenshot if status is FAIL 
+            // Take screenshot if status is FAIL
             String screenshotPath = captureScreenshot(driver, stepMessage);//if testcase fails it will take SS
             try 
             {
@@ -52,14 +46,18 @@ public class Reports {
             test.log(status, stepMessage);//to check log status...skipping test cases only(not pass and not fail test case)
         }
     }
-
+ 
+    
     public static String captureScreenshot(WebDriver driver, String fileLabel) {
         String folderPath = System.getProperty("user.dir") + "/reports/screenshots/";//capture the SS with name and save it one loaction
-        new File(folderPath).mkdirs();//creating a folder
+        new File(folderPath).mkdirs();//creating a floder
+ 
         String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH_mm_ss").format(new Date());//to generate unique name for screenshot and capture the dd-MM-yyyy_HH_mm_ss //output is string
         String safeFileName = fileLabel.replaceAll("[^a-zA-Z0-9]", "_") + "_" + timeStamp + ".png";//chracters will replace with _underscore
+ 
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);//ss is file form and saving into filr variable 
         File destFile = new File(folderPath + safeFileName);//where we want to save in folder with file name
+ 
         try 
         {
             FileUtils.copyFile(screenshot, destFile);//Fileutils is a class and (capture the SS,des folder)
@@ -67,10 +65,11 @@ public class Reports {
         catch (IOException e) {
             e.printStackTrace();
         }
-
-        //return "./screenshots/" + safeFileName;//returning the SS folder with files
-        return destFile.getAbsolutePath();
-    } 
-
  
+        
+      //  return "./screenshots/" + safeFileName;//returning the SS folder with files
+        return destFile.getAbsolutePath();
+    }
+ 
+
 }
