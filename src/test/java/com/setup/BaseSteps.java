@@ -1,58 +1,59 @@
 package com.setup;
-
+ 
 import java.util.Properties;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import com.parameters.PropertyReader;
 
+import com.parameters.PropertyReader;
+ 
 public class BaseSteps {
 	public static WebDriver driver;
-	public static Properties prop; // ✅ Global properties variable
+	 public static Properties prop;
+    public static void launchBrowser() {
+        Properties prop = PropertyReader.readProperty();
+        String browser = prop.getProperty("browserName");//chrome will come
 
-	// Launch browser based on config4
-	public static void launchBrowser() {
-		prop = PropertyReader.readProperty(); // ✅ Initialize properties
-		String browser = prop.getProperty("browserName");
-		String url = prop.getProperty("sourceUrl");
+        if (browser.equalsIgnoreCase("chrome")) 
+        {
+        	System.setProperty("webdriver.chrome.driver", "C:\\Users\\koteru\\OneDrive - Capgemini\\Desktop\\SeleniumGrid\\chromedriver.exe");
+        	driver = new ChromeDriver();//chrome will launch
 
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", "C:\\Training vvat\\SeleniumGrid\\chromedriver.exe");
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("firefox")) {
-			driver = new FirefoxDriver();
-		} else if (browser.equalsIgnoreCase("edge")) {
-			System.setProperty("webdriver.edge.driver", "C:\\Training vvat\\SeleniumGrid\\msedgedriver.exe");
-			driver = new EdgeDriver();
-		} else {
-			System.out.println("Invalid browser specified in config.properties");
-			return;
-		}
-		driver.get(url);
-		driver.manage().window().maximize();
-		String newurl = prop.getProperty("targetUrl");
-		driver.get(newurl);
-		driver.manage().window().maximize();
-	}
+        } 
+        else if (browser.equalsIgnoreCase("firefox")) 
+        {
+        	//System.setProperty("webdriver.firefox.driver", "C:\\Users\\koteru\\OneDrive - Capgemini\\Desktop\\SeleniumGrid\\chromedriver.exe");
+            driver = new FirefoxDriver();//firebox will launch
+        } 
+        else if (browser.equalsIgnoreCase("edge")) 
+        {
+        	System.setProperty("webdriver.edge.driver", "C:\\Users\\koteru\\OneDrive - Capgemini\\Desktop\\SeleniumGrid\\msedgedriver.exe");
+            driver = new EdgeDriver();//edge will launch
+        } 
+        else 
+        {
+            System.out.println("Invalid browser specified in config.properties");
+            return;
+        }
+        String url=prop.getProperty("sourceUrl");
+        driver.get(url);
+        driver.manage().window().maximize();
+//        String targeturl=prop.getProperty("targetUrl");
+//        driver.get(targeturl);
 
-	// Sleep utility
-	public static void sleep(int msec) {
-		try {
-			Thread.sleep(msec);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void tearDown() {
-		if (driver != null) {
-			driver.quit();
-			driver = null;
-		}
-	}
-
-}
-
-// System.setProperty("webdriver.chrome.driver", "C:\\Training
-// vvat\\SeleniumGrid\\chromedriver.exe");//chrome will launch
+    }
+    public static void sleep(int msec) {//handling waits 
+        try 
+        {
+            Thread.sleep(msec);
+        } 
+        catch (InterruptedException e) 
+        {
+            e.printStackTrace();//what is happening in execution it pulls all data
+        }
+    }
+//if any thing happens in future or may delete file that time it handling will works.
+// Switch to window by index
+    }
